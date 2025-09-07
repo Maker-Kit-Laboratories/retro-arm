@@ -1,7 +1,7 @@
-![Retro Opi Image](./retro-opi-image.png)
-
 # RETRO OPI
 3D Printed case and custom armbian image script.
+
+![Retro Opi Image](./retro-opi-image.png)
 
 ## PRE-MADE IMAGE REQUIREMENTS:
 - Orange Pi Zero 3 SBC
@@ -29,3 +29,7 @@
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W
+
+
+## SUPPORT:
+- If you'd like to support this project, consider buying a kit @ https://www.printables.com/@MakerKitLab_2578894
