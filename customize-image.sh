@@ -22,6 +22,12 @@ chown -R robot:robot /home/robot
 
 
 #################################################################
+# INSTALL DEPENDENCIES
+#################################################################
+apt-get install -y samba
+
+
+#################################################################
 # INSTALL RETROPIE
 #################################################################
 cd /opt
@@ -31,6 +37,7 @@ chmod +x retropie_setup.sh
 ./retropie_setup.sh
 
 #DEBUG
+echo ROBOT HOME:
 ls -la /home/robot
 
 
@@ -99,12 +106,6 @@ EOF
 
 
 #################################################################
-# INSTALL DEPENDENCIES
-#################################################################
-apt-get install -y samba
-
-
-#################################################################
 # BOOT SCRIPT
 #################################################################
 mkdir -p /opt/boot/
@@ -124,7 +125,7 @@ cat >/etc/samba/smb.conf <<EOL
     map to guest = Bad User
     dns proxy = no
 
-[Retro-Opi-Roms]
+[RETRO-OPI-ROMS]
     path = /home/robot/RetroPie/roms
     browseable = yes
     read only = no
