@@ -4,7 +4,7 @@
 
 ### DESCRIPTION:
 Custom armbian build script intregrating Retro Pie and free open source roms.
-Current Version: 0.03
+Current Version: 0.04
 
 ### PRE-MADE IMAGE REQUIREMENTS:
 - Orange Pi Zero 3 SBC

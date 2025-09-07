@@ -9,14 +9,6 @@ captured_pids=$(ls /proc | grep '^[0-9]\+$')
 
 
 #################################################################
-# HOSTNAME
-#################################################################
-hostnamectl set-hostname retro-opi
-echo "retro-opi" >/etc/hostname
-sed -i 's/^\(127\.0\.1\.1\s*\).*/\1retro-opi/' /etc/hosts
-
-
-#################################################################
 # USERS
 #################################################################
 echo "root:retroopi" | chpasswd
@@ -118,6 +110,9 @@ apt-get install -y samba
 mkdir -p /opt/boot/
 cat >/opt/boot/retro-opi-boot.sh <<EOF
 #!/bin/bash
+hostnamectl set-hostname retro-opi
+echo "retro-opi" >/etc/hostname
+sed -i 's/^\(127\.0\.1\.1\s*\).*/\1retro-opi/' /etc/hosts
 mkdir -p /home/robot
 chmod 755 /home/robot
 rsync -a /opt/boot/robot/ /home/robot/
