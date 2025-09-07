@@ -1,20 +1,22 @@
+![Retro Opi Image](./retro-opi-image.png)
+
 # RETRO OPI
-### 3D Printed case and custom armbian image script.
+3D Printed case and custom armbian image script.
 
 ## PRE-MADE IMAGE REQUIREMENTS:
-1. Orange Pi Zero 3 SBC.
-2. 8GB+ Micro SD Card.
+- Orange Pi Zero 3 SBC
+- 8GB+ Micro SD Card
 
 ## PRE-MADE IMAGE INSTRUCTIONS:
-1. Download premade image here:
-2. Use `rufus` or `balenaEtcher` to write to a an SD .
-3. Insert into Orange Pi Zero 3 and power.
+1. Download premade image here: ` `
+2. Use `rufus` or `balenaEtcher` to write to a an SD
+3. Insert into Orange Pi Zero 3 and power
 
 
 ## BUILD REQUIREMENTS:
-1. Orange Pi SBC.
-2. PC running your favourite linux.
-3. Sufficient CPU/RAM/DISK to compile armbian.
+- Orange Pi SBC
+- PC running your favourite linux
+- Sufficient CPU/RAM/DISK to compile armbian
 
 
 ## BUILD INSTRUCTIONS:
