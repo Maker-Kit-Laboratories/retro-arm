@@ -1,2 +1,2 @@
-# Retro_OPi_Zero3
-Retro Pie configured and running on the Orange Pi Zero 3
+# Retro OPi
+Retro Pie pre-built into armbian for the orange pi series SBC
