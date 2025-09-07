@@ -124,11 +124,11 @@ chown -R robot:robot /home/robot
 cat >/etc/samba/smb.conf <<EOL
 [global]
     workgroup = WORKGROUP
-    server string = RetroOPi Samba Server
+    server string = Retro OPi
     map to guest = Bad User
     dns proxy = no
 
-[roms]
+[Retro-Opi-Roms]
     path = /home/robot/RetroPie/roms
     browseable = yes
     read only = no

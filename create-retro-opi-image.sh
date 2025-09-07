@@ -2,7 +2,7 @@
 #################################################################
 # RETRO OPI ARMBIAN IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
-# VERSION 0.01
+# VERSION 0.02
 # NOTES:
 # - This script automates the process of creating a Retro OPI Armbian image.
 # - Tested on:
@@ -71,7 +71,6 @@ echo -e "${NC}"
 #################################################################
 # EDIT CONFIG FILE (WIP)
 #################################################################
-
 
 
 #################################################################
