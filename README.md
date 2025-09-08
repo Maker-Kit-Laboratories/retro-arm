@@ -5,12 +5,12 @@
 ### DESCRIPTION:
 Custom armbian build script intregrating Retro Pie and free open source roms.
 
-### PRE-MADE IMAGE REQUIREMENTS:
+### PRE-BUILT IMAGE REQUIREMENTS:
 - Orange Pi Zero 3 SBC
 - 8GB+ Micro SD Card
 
-### PRE-MADE IMAGE INSTRUCTIONS:
-1. Download premade image here: ` `
+### PRE-BUILT IMAGE INSTRUCTIONS:
+1. Download premade image here: [pre-built/retro-opi-armbian-25.08-opizero3.img.xz](./pre-built/retro-opi-armbian-25.08-opizero3.img.xz)
 2. Use `rufus` or `balenaEtcher` to write to a an SD
 3. Insert into Orange Pi Zero 3 and power
 
@@ -31,5 +31,5 @@ Custom armbian build script intregrating Retro Pie and free open source roms.
     - Orange Pi Zero 2W
 
 ### SUPPORT:
-- If you'd like to support this project, consider buying a kit @ https://www.printables.com/@MakerKitLab_2578894
+- If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 - Comfirm supported boards and submit issues please.
