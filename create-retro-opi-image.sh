@@ -2,10 +2,10 @@
 #################################################################
 # RETRO-OPI ARMBIAN IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
-# VERSION 0.07
+# VERSION 0.08
 # NOTES:
 # - Armbian, Retro Pie and all included open source games are under their respective licenses.
-# - This script automates the process of creating a Retro-OPI Armbian image with open source games pre-installed.
+# - This script automates the process of creating a RETRO-OPI Armbian image with open source games pre-installed.
 # - Tested on:
 #   - Orange Pi Zero 3
 #   - Orange Pi Zero 2w
@@ -97,13 +97,11 @@ cd ../
 # COMPRESS IMAGE
 #################################################################
 IMAGE_FILE=$(ls -t build/output/images/*.img | head -n 1)
-sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"
+if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
+    echo -e "${RED}Image compression failed!${NC}"
+else
+    echo "IMAGE BUILT AND COMPRESSED SUCCESSFULLY"
+    echo "========================================"
+    echo "${IMAGE_FILE}.xz"
+fi
 
-#################################################################
-# FINISHED
-#################################################################
-echo ""
-echo ""
-echo "IMAGE BUILT AND COMPRESSED SUCCESSFULLY"
-echo "========================================"
-echo "${IMAGE_FILE}.xz"

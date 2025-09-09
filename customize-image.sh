@@ -22,6 +22,15 @@ chown -R robot:robot /home/robot
 
 
 #################################################################
+# DEPENDENCIES
+#################################################################
+apt-get update
+apt-get install -y samba avahi-daemon
+systemctl disable smbd
+systemctl disable nmbd
+systemctl daemon-reload
+
+#################################################################
 # VIDEO CONFIGURATION (1080P)
 #################################################################
 echo "extraargs=video=HDMI-A-1:1920x1080@60" >> "/boot/armbianEnv.txt"
@@ -46,19 +55,13 @@ chmod 644 /home/robot/.asoundrc
 
 
 #################################################################
-# DEPENDENCIES
-#################################################################
-apt-get update
-apt-get install -y samba avahi-daemon
-systemctl disable smbd
-
-
-#################################################################
 # ROBOT LOGIN SCRIPT
 #################################################################
 mkdir -p /opt/boot/
 cat >/opt/boot/retro-opi-robot.sh <<EOF
 #!/bin/bash
+echo "retroopi" | sudo -S systemctl stop nmbd >/dev/null 2>&1
+echo "retroopi" | sudo -S systemctl stop smbd >/dev/null 2>&1
 echo
 GREEN='\033[38;5;70m'
 ORANGE='\033[0;33m'
@@ -75,17 +78,20 @@ echo -e "WELCOME TO \${GREEN}RETRO \${ORANGE}OPI \${RED}ARMBIAN\${NC}"
 echo "========================================"
 echo
 sleep 2
-echo "retroopi" | sudo -S true
+echo
 echo
 echo
 if ip route | grep -q default; then
-    echo -e "\${GREEN}Network connection is active.\${NC}"
-    systemctl start smbd
+    # Network connection is active.
+    echo "retroopi" | sudo -S systemctl start nmbd >/dev/null 2>&1
+    echo "retroopi" | sudo -S systemctl start smbd >/dev/null 2>&1
 else
     echo -e "\${RED}No active network connection detected.\${NC}"
     sleep 2
+    echo "retroopi" | sudo -S true >/dev/null 2>&1
     export TERM=linux
-    nmtui
+    sudo nmtui
+    echo "retroopi" | sudo -S false >/dev/null 2>&1
     clear
 fi
 echo
@@ -105,7 +111,6 @@ cat >>/home/robot/.profile <<'EOF'
 EOF
 
 
-
 #################################################################
 # INSTALL RETROPIE
 #################################################################
@@ -114,6 +119,17 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
+
+
+#################################################################
+# RETROARCH SETTINGS
+#################################################################
+mkdir -p /home/robot/.config/retroarch
+cat >/home/robot/.config/retroarch/retroarch.cfg <<EOF
+audio_driver = "alsa"
+EOF
+chown -R robot:robot /home/robot/.config/retroarch
+chmod 600 /home/robot/.config/retroarch/retroarch.cfg
 
 
 #################################################################
@@ -142,7 +158,6 @@ download_roms_for_system() {
 }
 
 download_and_install_roms
-
 
 #################################################################
 # STORE ROBOT
@@ -216,7 +231,6 @@ WantedBy=multi-user.target
 EOF
 
 ln -sf /etc/systemd/system/retro-opi-boot.service /etc/systemd/system/multi-user.target.wants/retro-opi-boot.service
-
 
 
 #################################################################

@@ -1,9 +1,9 @@
 # RETRO-OPI CONSOLE
-![Retro Opi Image](./documentation/retro-opi-image.png)
+![Retro Opi Image](./retro-opi-image.png)
 
 
 ### DESCRIPTION:
-Custom armbian build script intregrating Retro Pie and free open source roms.
+Custom armbian build script intregrating Retro Pie and open source roms.
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
 - Orange Pi Zero 3 SBC
@@ -25,12 +25,11 @@ Custom armbian build script intregrating Retro Pie and free open source roms.
 3.  `./create-retro-opi-image.sh`
 
 ### NOTES:
-- Version 0.07
+- Version 0.08
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W
 
 ### SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
-
-- Comfirm supported boards and submit issues please.
+- Comfirm supported boards and submit any issues you come across.
