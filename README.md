@@ -1,5 +1,5 @@
 # RETRO-OPI CONSOLE
-![Retro Opi Image](./retro-opi-image.png)
+![Retro Opi Image](./documentation/retro-opi-image.png)
 
 
 ### DESCRIPTION:
@@ -32,4 +32,5 @@ Custom armbian build script intregrating Retro Pie and free open source roms.
 
 ### SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
+
 - Comfirm supported boards and submit issues please.
