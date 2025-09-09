@@ -22,9 +22,88 @@ chown -R robot:robot /home/robot
 
 
 #################################################################
-# INSTALL DEPENDENCIES
+# VIDEO CONFIGURATION (1080P)
 #################################################################
-apt-get install -y samba
+echo "extraargs=video=HDMI-A-1:1920x1080@60" >> "/boot/armbianEnv.txt"
+
+
+#################################################################
+# AUDIO CONFIGURATION
+#################################################################
+cat >/home/robot/.asoundrc <<EOF
+pcm.!default {
+  type plug
+  slave.pcm "plughw:1,0"
+}
+
+ctl.!default {
+  type hw
+  card 1
+}
+EOF
+chown robot:robot /home/robot/.asoundrc
+chmod 644 /home/robot/.asoundrc
+
+
+#################################################################
+# DEPENDENCIES
+#################################################################
+apt-get update
+apt-get install -y samba avahi-daemon
+systemctl disable smbd
+
+
+#################################################################
+# ROBOT LOGIN SCRIPT
+#################################################################
+mkdir -p /opt/boot/
+cat >/opt/boot/retro-opi-robot.sh <<EOF
+#!/bin/bash
+echo
+GREEN='\033[38;5;70m'
+ORANGE='\033[0;33m'
+RED='\033[38;5;203m'
+NC='\033[0m'
+echo -e "\${GREEN}  ______     ______     ______   ______     ______      \${ORANGE}     ______     ______   __    "
+echo -e "\${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \     \${ORANGE}    /\  __ \   /\  == \ /\ \   "
+echo -e "\${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \    \${ORANGE}    \ \ \/\ \  \ \  _-/ \ \ \  "
+echo -e "\${GREEN}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\   \${ORANGE}     \ \_____\  \ \_\    \ \_\ "
+echo -e "\${GREEN}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/   \${ORANGE}      \/_____/   \/_/     \/_/ "
+echo -e "\${NC}"
+echo
+echo -e "WELCOME TO \${GREEN}RETRO \${ORANGE}OPI \${RED}ARMBIAN\${NC}"
+echo "========================================"
+echo
+sleep 2
+echo "retroopi" | sudo -S true
+echo
+echo
+if ip route | grep -q default; then
+    echo -e "\${GREEN}Network connection is active.\${NC}"
+    systemctl start smbd
+else
+    echo -e "\${RED}No active network connection detected.\${NC}"
+    sleep 2
+    export TERM=linux
+    nmtui
+    clear
+fi
+echo
+echo
+echo -e "\${ORANGE}Starting...\${NC}"
+sleep 2
+sudo -u robot -H XDG_RUNTIME_DIR="/run/user/1000" emulationstation
+EOF
+chmod +x /opt/boot/retro-opi-robot.sh
+
+
+#################################################################
+# ROBOT LOGIN SCRIPT AUTO START
+#################################################################
+cat >>/home/robot/.profile <<'EOF'
+/opt/boot/retro-opi-robot.sh
+EOF
+
 
 
 #################################################################
@@ -36,10 +115,6 @@ cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
 
-#DEBUG
-echo ROBOT HOME:
-ls -la /home/robot
-
 
 #################################################################
 # INSTALL ROMS
@@ -48,6 +123,9 @@ download_and_install_roms() {
     download_roms_for_system "nes" "nes"
     download_roms_for_system "snes" "snes"
     download_roms_for_system "mastersystem" "sms"
+    download_roms_for_system "megadrive" "md"
+    download_roms_for_system "gba" "gba"
+    download_roms_for_system "gbc" "gbc"
 }
 
 download_roms_for_system() {
@@ -59,39 +137,17 @@ download_roms_for_system() {
     unzip master.zip
     mkdir -p "/opt/boot/robot/RetroPie/roms/$system"
     mv -v "${shorthand}-games-master"/* "/opt/boot/robot/RetroPie/roms/$system"
-    rm -rf "${shorthand}-games-master"
-    rm master.zip
+    cd ..
+    rm -rf "/opt/roms/$system"
 }
 
 download_and_install_roms
 
+
 #################################################################
 # STORE ROBOT
 #################################################################
-mkdir -p /opt/boot/robot
 rsync -a /home/robot/ /opt/boot/robot/
-
-
-#################################################################
-# RETROPIE AUTO START
-#################################################################
-cat >/etc/systemd/system/retropie.service <<EOF
-[Unit]
-Description=Start Retro Pie - EmulationStation
-After=getty@tty1.service
-
-[Service]
-Type=simple
-User=robot
-ExecStart=emulationstation
-Restart=on-failure
-RestartSec=10
-
-[Install]
-WantedBy=getty@tty1.service
-EOF
-
-ln -sf /etc/systemd/system/retropie.service /etc/systemd/system/multi-user.target.wants/retropie.service
 
 
 #################################################################
@@ -121,20 +177,22 @@ chown -R robot:robot /home/robot
 cat >/etc/samba/smb.conf <<EOL
 [global]
     workgroup = WORKGROUP
-    server string = Retro OPi
+    server string = RETRO-OPI
     map to guest = Bad User
-    dns proxy = no
+    netbios name = RETRO-OPI
+    guest ok = yes
 
-[RETRO-OPI-ROMS]
+[RETRO-OPI-DATA]
     path = /home/robot/RetroPie/roms
     browseable = yes
     read only = no
     guest ok = yes
     force user = robot
+    public = yes
+    create mask = 0775
+    directory mask = 0775
 EOL
-
-systemctl enable smbd
-systemctl restart smbd
+systemctl enable avahi-daemon
 EOF
 
 chmod +x /opt/boot/retro-opi-boot.sh
@@ -150,6 +208,7 @@ Description=Retro OPi - Initial Boot Script
 [Service]
 Type=oneshot
 ExecStart=/opt/boot/retro-opi-boot.sh
+ExecStartPost=/bin/systemctl disable retro-opi-boot.service
 RemainAfterExit=no
 
 [Install]
@@ -158,56 +217,6 @@ EOF
 
 ln -sf /etc/systemd/system/retro-opi-boot.service /etc/systemd/system/multi-user.target.wants/retro-opi-boot.service
 
-
-#################################################################
-# ROBOT LOGIN SCRIPT
-#################################################################
-mkdir -p /opt/boot/
-cat >/opt/boot/retro-opi-robot.sh <<EOF
-#!/bin/bash
-exec > /dev/tty1 2>&1
-echo
-GREEN='\033[38;5;70m'
-ORANGE='\033[38;5;208m'
-RED='\033[38;5;203m'
-NC='\033[0m'
-echo -e "\${GREEN}  ______     ______     ______   ______     ______      \${ORANGE}     ______     ______   __    "
-echo -e "\${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \     \${ORANGE}    /\  __ \   /\  == \ /\ \   "
-echo -e "\${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \    \${ORANGE}    \ \ \/\ \  \ \  _-/ \ \ \  "
-echo -e "\${GREEN}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\   \${ORANGE}     \ \_____\  \ \_\    \ \_\ "
-echo -e "\${GREEN}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/   \${ORANGE}      \/_____/   \/_/     \/_/ "
-echo -e "\${NC}"
-echo
-echo -e "WELCOME TO \${GREEN}RETRO \${ORANGE}OPI \${RED}ARMBIAN"
-echo "=============================================="
-echo
-sleep 20
-export TERM=linux
-nmtui
-EOF
-chmod +x /opt/boot/retro-opi-robot.sh
-
-
-#################################################################
-# ROBOT LOGIN SCRIPT SERVICE
-#################################################################
-cat >/etc/systemd/system/retro-opi-robot.service <<EOF
-[Unit]
-Description=Retro OPi - Robot Login Script
-After=getty@tty1.service
-Before=retropie.service
-
-[Service]
-Type=oneshot
-User=robot
-ExecStart=/opt/boot/retro-opi-robot.sh
-
-[Install]
-WantedBy=getty@tty1.service
-EOF
-
-
-ln -sf /etc/systemd/system/retro-opi-robot.service /etc/systemd/system/multi-user.target.wants/retro-opi-robot.service
 
 
 #################################################################
