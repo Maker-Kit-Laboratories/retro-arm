@@ -2,7 +2,7 @@
 #################################################################
 # RETRO-OPI ARMBIAN IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
-# VERSION 0.08
+# VERSION 0.09
 # NOTES:
 # - Armbian, Retro Pie and all included open source games are under their respective licenses.
 # - This script automates the process of creating a RETRO-OPI Armbian image with open source games pre-installed.
@@ -12,7 +12,7 @@
 #
 #################################################################
 set -e
-
+sudo -S true
 
 #################################################################
 # CLONE ARMBIAN
