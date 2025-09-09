@@ -69,7 +69,6 @@ BOARD="${boards[$((selection-1))]}"
 echo -e "${NC}Selected board: ${ORANGE}$BOARD"
 echo -e "${NC}"
 
-
 #################################################################
 # EDIT CONFIG FILE (WIP)
 #################################################################
@@ -81,7 +80,6 @@ echo -e "${NC}"
 mkdir -p build/userpatches
 cp customize-image.sh build/userpatches/
 sudo chmod +x build/userpatches/customize-image.sh
-
 
 #################################################################
 # BUILD

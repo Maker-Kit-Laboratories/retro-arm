@@ -30,6 +30,7 @@ systemctl disable smbd
 systemctl disable nmbd
 systemctl daemon-reload
 
+
 #################################################################
 # VIDEO CONFIGURATION (1080P)
 #################################################################
