@@ -1,5 +1,5 @@
 # RETRO-OPI CONSOLE
-![Retro Opi Image](./retro-opi-image.png)
+![Retro Opi Image](./documentation/retro-opi-image.png)
 
 
 ### DESCRIPTION:
