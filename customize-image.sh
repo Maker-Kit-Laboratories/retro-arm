@@ -126,11 +126,11 @@ sudo nmtui
 clear
 if ip route | grep -q default; then
     echo "retroopi" | sudo -S systemctl start smbd nmbd >/dev/null 2>&1
-    touch /opt/retro-opi/ropi-network-set.check
     echo -e "${GREEN}Network connection detected. File share enabled.${NC}"
     sleep 2
 fi
 echo "retroopi" | sudo -S false >/dev/null 2>&1
+touch /opt/retro-opi/ropi-network-set.check
 EOF
 chmod +x /opt/retro-opi/ropi-connect-network.sh
 chown robot:robot /opt/retro-opi/ropi-connect-network.sh
@@ -168,6 +168,7 @@ else
     sleep 2
     if [ ! -f /opt/retro-opi/ropi-network-set.check ]; then
         ropi-connect-network
+    fi
 fi
 echo
 echo
@@ -200,8 +201,8 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
-
-
+echo
+echo
 #################################################################
 # RETRO PIE SETTINGS
 # TODO:
@@ -248,7 +249,7 @@ download_and_install_roms() {
     download_roms_for_system "gba" "gba"
     download_roms_for_system "gbc" "gbc"
 }
-
+clear
 read -p "Download and install open-source ROMs? [y/N]: " download_roms
 if [[ "$download_roms" =~ ^[Yy]$ ]]; then
     download_and_install_roms

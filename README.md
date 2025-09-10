@@ -9,7 +9,7 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 - 8GB+ Micro SD Card
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
-1. Download pre-built image here -> [retro-opi-0.13-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.13-armbian-25.08-orangepizero3.img.xz)
+1. Download pre-built image here -> [retro-opi-0.15-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero3.img.xz)
 2. Use `balenaEtcher` or `Raspberry Pi Imager` to write to an SD card.
 3. Insert into Orange Pi Zero 3 and power.
 4. See Usage below.
@@ -44,11 +44,10 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 - SSH command: `ssh robot@retro-opi.local`
 
 ### NOTES:
-- Version 0.14
+- Version 0.15
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W
-
 
 
 # SUPPORT:

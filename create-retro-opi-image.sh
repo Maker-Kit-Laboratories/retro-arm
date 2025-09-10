@@ -14,9 +14,20 @@
 set -e
 sudo -S true
 
+
+#################################################################
+# INIT
+#################################################################
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.14"
+VERSION="0.15"
+DISTRO="ubuntu"
+RELEASE="noble"
+ARCH="arm64"
+GREEN='\033[38;5;70m'
+ORANGE='\033[38;5;214m'
+RED='\033[38;5;203m'
+NC='\033[0m'
 
 
 #################################################################
@@ -32,10 +43,6 @@ clear
 # HEADER
 #################################################################
 echo
-GREEN='\033[38;5;70m'
-ORANGE='\033[38;5;214m'
-RED='\033[38;5;203m'
-NC='\033[0m'
 echo -e "${GREEN}  ______     ______     ______   ______     ______      ${ORANGE}     ______     ______   __    "
 echo -e "${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \     ${ORANGE}    /\  __ \   /\  == \ /\ \   "
 echo -e "${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \    ${ORANGE}    \ \ \/\ \  \ \  _-/ \ \ \  "
@@ -45,10 +52,12 @@ echo -e "${NC}"
 echo
 echo -e "MAKER KIT LABORATORIES - ${GREEN}RETRO ${ORANGE}OPI ${RED}ARMBIAN ${NC}IMAGE CREATOR"
 echo "========================================================="
+echo -e "${GREEN}RETRO ${ORANGE}OPI: ${NC}${VERSION}"
+echo -e "${RED}ARMBIAN:   ${NC}${ARMBIAN_VERSION}"
 sleep 3
 echo
-echo -e "${RED}ARMBIAN ${NC}SBC Support List"
-echo "=========================="
+echo -e "${NC}SBC Support List"
+echo "========================================================="
 echo
 
 
@@ -65,13 +74,13 @@ for file in build/config/boards/orangepi*.csc; do
     ((i++))
 done
 echo
-read -p "Select a board by number: " selection
+read -p "Enter board number: " selection
 if ! [[ "$selection" =~ ^[0-9]+$ ]] || [ "$selection" -lt 1 ] || [ "$selection" -gt "${#boards[@]}" ]; then
     echo -e "${RED}Invalid selection."
     exit 1
 fi
 BOARD="${boards[$((selection-1))]}"
-echo -e "${NC}Selected board: ${ORANGE}$BOARD"
+echo -e "${NC}Board: ${ORANGE}$BOARD"
 echo -e "${NC}"
 
 
@@ -91,18 +100,13 @@ sudo chmod +x build/userpatches/customize-image.sh
 #################################################################
 # BUILD
 #################################################################
-cd build
-DISTRO="ubuntu"
-RELEASE="noble"
-ARCH="arm64"
-if ! ./compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
+if ! build/compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
     echo -e "${RED}IMAGE BUILD FAILED${NC}"
     exit 1
 else
     echo -e "${GREEN}IMAGE BUILT SUCCESSFULLY${NC}"
     echo -e "${GREEN}=========================${NC}"
 fi
-cd ../
 
 
 #################################################################
@@ -118,4 +122,5 @@ else
     echo -e "${GREEN}==============================${NC}"
     mv -f "${IMAGE_FILE}.xz" "${COMPRESSED_IMAGE_FILE}"
     echo -e "${ORANGE}${COMPRESSED_IMAGE_FILE}${NC}"
+    exit 0
 fi
