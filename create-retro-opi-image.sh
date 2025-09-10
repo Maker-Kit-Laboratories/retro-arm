@@ -2,17 +2,21 @@
 #################################################################
 # RETRO-OPI ARMBIAN IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
-# VERSION 0.11
 # NOTES:
 # - Armbian, Retro Pie and all included open source games are under their respective licenses.
 # - This script automates the process of creating a RETRO-OPI Armbian image with open source games pre-installed.
 # - Tested on:
 #   - Orange Pi Zero 3
 #   - Orange Pi Zero 2w
+#
 #   
 #################################################################
 set -e
 sudo -S true
+
+NAME="retro-opi"
+ARMBIAN_VERSION="25.08"
+VERSION="0.12"
 
 #################################################################
 # CLONE ARMBIAN
@@ -28,7 +32,7 @@ clear
 #################################################################
 echo
 GREEN='\033[38;5;70m'
-ORANGE='\033[38;5;208m'
+ORANGE='\033[38;5;214m'
 RED='\033[38;5;203m'
 NC='\033[0m'
 echo -e "${GREEN}  ______     ______     ______   ______     ______      ${ORANGE}     ______     ______   __    "
@@ -95,12 +99,14 @@ cd ../
 # COMPRESS IMAGE
 #################################################################
 IMAGE_FILE=$(ls -t build/output/images/*.img | head -n 1)
+COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-armbian-${ARMBIAN_VERSION}-${BOARD}.img.xz"
+echo -e "${ORANGE}IMAGE BUILT SUCCESSFULLY${NC}"
+echo -e "${ORANGE}=========================${NC}"
 if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
     echo -e "${RED}Image compression failed!${NC}"
 else
     echo -e "${ORANGE}IMAGE BUILT AND COMPRESSED SUCCESSFULLY${NC}"
     echo -e "${ORANGE}========================================${NC}"
-    echo "${IMAGE_FILE}.xz"
+    mv -f "${IMAGE_FILE}.xz" "${COMPRESSED_IMAGE_FILE}"
+    echo "${COMPRESSED_IMAGE_FILE}"
 fi
-
-
