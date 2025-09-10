@@ -98,8 +98,9 @@ IMAGE_FILE=$(ls -t build/output/images/*.img | head -n 1)
 if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
     echo -e "${RED}Image compression failed!${NC}"
 else
-    echo "IMAGE BUILT AND COMPRESSED SUCCESSFULLY"
-    echo "========================================"
+    echo -e "${ORANGE}IMAGE BUILT AND COMPRESSED SUCCESSFULLY${NC}"
+    echo -e "${ORANGE}========================================${NC}"
     echo "${IMAGE_FILE}.xz"
 fi
+
 

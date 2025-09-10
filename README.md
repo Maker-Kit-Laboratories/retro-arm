@@ -26,10 +26,14 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 
 ### USAGE:
 - Credentials - user: `robot` or `root` password: `retroopi`
+- SSH: `ssh robot@retro-opi.local`
 - Booting will check your network connection, if none exists it will bring up a connection window. Use a keyboard to configure or hit `Esc` to cancel.
-- Roms directory will be automatically shared. Add it to windows as a network drive: `\\retro-opi.local\roms` - user: `robot` - password: `retroopi`
-- Retro Pie automatically starts on boot, to exist press `F4`. To restart type `emulationstation` in the console.
--
+- Directory for roms is automatically shared. Add it to windows as a network drive: 
+    - server: `\\retro-opi.local\roms` 
+    - user: `robot` 
+    - password: `retroopi`
+- Retro Pie automatically starts on boot, to exist press `F4` and `emulationstation` to restart.
+- `sudo nmtui` will bring up the connection window.
 
 ### NOTES:
 - Version 0.10

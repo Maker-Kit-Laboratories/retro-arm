@@ -85,8 +85,7 @@ if [ "$(tty)" = "/dev/tty1" ]; then
     echo
     if ip route | grep -q default; then
         echo -e "\${GREEN}Network connection detected.\${NC}"
-        echo "retroopi" | sudo -S systemctl start nmbd >/dev/null 2>&1
-        echo "retroopi" | sudo -S systemctl start smbd >/dev/null 2>&1
+        echo "retroopi" | sudo -S systemctl start smbd nmbd >/dev/null 2>&1
     else
         echo -e "\${RED}No active network connection detected.\${NC}"
         sleep 2
