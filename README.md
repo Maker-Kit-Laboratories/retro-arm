@@ -9,7 +9,7 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 - 8GB+ Micro SD Card
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
-1. Download premade image here -> [pre-built/retro-opi-armbian-25.08-opizero3.img.xz](./pre-built/retro-opi-armbian-25.08-opizero3.img.xz)
+1. Download premade image here -> [opi-armbian-25.08-opizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.11-armbian-25.08-opizero3.img.xz)
 2. Use `rufus` or `balenaEtcher` to write to a an SD.
 3. Insert into Orange Pi Zero 3 and power.
 4. See Usage.
@@ -28,15 +28,16 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 - Credentials - user: `robot` or `root` password: `retroopi`
 - SSH: `ssh robot@retro-opi.local`
 - Booting will check your network connection, if none exists it will bring up a connection window. Use a keyboard to configure or hit `Esc` to cancel.
+- `sudo nmtui` will bring up the connection window at any time.
 - Directory for roms is automatically shared. Add it to windows as a network drive: 
     - server: `\\retro-opi.local\roms` 
     - user: `robot` 
     - password: `retroopi`
 - Retro Pie automatically starts on boot, to exit press `F4`, and type `emulationstation` to restart.
-- `sudo nmtui` will bring up the connection window.
+
 
 ### NOTES:
-- Version 0.10
+- Version 0.11
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W
@@ -45,4 +46,4 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 
 # SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
-- Comfirm supported boards and submit any issues you come across.
+- Comfirm supported boards and submit any issues you come across. Thanks!
