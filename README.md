@@ -32,7 +32,7 @@ Custom armbian build script intregrating Retro Pie and open source roms.
     - server: `\\retro-opi.local\roms` 
     - user: `robot` 
     - password: `retroopi`
-- Retro Pie automatically starts on boot, to exist press `F4` and `emulationstation` to restart.
+- Retro Pie automatically starts on boot, to exit press `F4`, and type `emulationstation` to restart.
 - `sudo nmtui` will bring up the connection window.
 
 ### NOTES:
