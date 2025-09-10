@@ -16,7 +16,8 @@ sudo -S true
 
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.13"
+VERSION="0.14"
+
 
 #################################################################
 # CLONE ARMBIAN
@@ -24,8 +25,8 @@ VERSION="0.13"
 if [ ! -d build ]; then
     git clone --branch v25.08 --depth=1 https://github.com/armbian/build.git
 fi
-
 clear
+
 
 #################################################################
 # HEADER
@@ -50,10 +51,10 @@ echo -e "${RED}ARMBIAN ${NC}SBC Support List"
 echo "=========================="
 echo
 
+
 #################################################################
 # BOARD SELECTION
 #################################################################
-
 boards=()
 i=1
 for file in build/config/boards/orangepi*.csc; do
@@ -73,6 +74,7 @@ BOARD="${boards[$((selection-1))]}"
 echo -e "${NC}Selected board: ${ORANGE}$BOARD"
 echo -e "${NC}"
 
+
 #################################################################
 # EDIT CONFIG FILE (WIP)
 #################################################################
@@ -85,6 +87,7 @@ mkdir -p build/userpatches
 cp customize-image.sh build/userpatches/
 sudo chmod +x build/userpatches/customize-image.sh
 
+
 #################################################################
 # BUILD
 #################################################################
@@ -92,21 +95,27 @@ cd build
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"
-./compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"
+if ! ./compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
+    echo -e "${RED}IMAGE BUILD FAILED${NC}"
+    exit 1
+else
+    echo -e "${GREEN}IMAGE BUILT SUCCESSFULLY${NC}"
+    echo -e "${GREEN}=========================${NC}"
+fi
 cd ../
+
 
 #################################################################
 # COMPRESS IMAGE
 #################################################################
 IMAGE_FILE=$(ls -t build/output/images/*.img | head -n 1)
 COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-armbian-${ARMBIAN_VERSION}-${BOARD}.img.xz"
-echo -e "${ORANGE}IMAGE BUILT SUCCESSFULLY${NC}"
-echo -e "${ORANGE}=========================${NC}"
 if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
-    echo -e "${RED}Image compression failed!${NC}"
+    echo -e "${RED}IMAGE COMPRESSION FAILED${NC}"
+    exit 1
 else
-    echo -e "${ORANGE}IMAGE BUILT AND COMPRESSED SUCCESSFULLY${NC}"
-    echo -e "${ORANGE}========================================${NC}"
+    echo -e "${GREEN}IMAGE COMPRESSED SUCCESSFULLY${NC}"
+    echo -e "${GREEN}==============================${NC}"
     mv -f "${IMAGE_FILE}.xz" "${COMPRESSED_IMAGE_FILE}"
-    echo "${COMPRESSED_IMAGE_FILE}"
+    echo -e "${ORANGE}${COMPRESSED_IMAGE_FILE}${NC}"
 fi

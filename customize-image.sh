@@ -203,7 +203,9 @@ chmod +x retropie_setup.sh
 
 
 #################################################################
-# RETRO PIE SETTINGS (WIP)
+# RETRO PIE SETTINGS
+# TODO:
+# - Add network command directly to emulationstation
 #################################################################
 
 

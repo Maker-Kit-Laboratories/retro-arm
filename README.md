@@ -2,7 +2,7 @@
 ![Retro Opi Image](./documentation/retro-opi-image.png)
 
 ### DESCRIPTION:
-Custom armbian build script intregrating Retro Pie and open source roms.
+Custom armbian build script intregrating Retro Pie and open source ROMs.
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
 - Orange Pi Zero 3 SBC
@@ -24,8 +24,6 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 3.  `./create-retro-opi-image.sh`
 
 ### USAGE:
-- Credentials - user: `robot` password: `retroopi`
-- Hostname: `retro-opi`
 - Boot Process:
     - Automatic login to user: `robot`.
     - Boot splash.
@@ -39,10 +37,14 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 - Helpful custom commands:
     - `ropi-set-resolution` : Sets a custom video resolution on boot.
     - `ropi-connect-network` : Setup a network connection and file sharing.
+- Credentials:
+    - user: `robot`  
+    - password: `retroopi`
+- Hostname: `retro-opi`
 - SSH command: `ssh robot@retro-opi.local`
 
 ### NOTES:
-- Version 0.13
+- Version 0.14
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W
