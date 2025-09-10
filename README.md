@@ -25,6 +25,7 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 
 ### USAGE:
 - Credentials - user: `robot` password: `retroopi`
+- Hostname: `retro-opi`
 - Boot Process:
     - Automatic login to user: `robot`.
     - Boot splash.
@@ -41,7 +42,7 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 - SSH command: `ssh robot@retro-opi.local`
 
 ### NOTES:
-- Version 0.12
+- Version 0.13
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W

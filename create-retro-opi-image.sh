@@ -16,7 +16,7 @@ sudo -S true
 
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.12"
+VERSION="0.13"
 
 #################################################################
 # CLONE ARMBIAN

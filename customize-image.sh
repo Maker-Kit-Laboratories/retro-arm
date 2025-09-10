@@ -32,10 +32,15 @@ systemctl daemon-reload
 
 
 #################################################################
-# VIDEO CONFIGURATION
+# RETRO-OPI DIRECTORY
 #################################################################
 mkdir -p /opt/retro-opi/
 chown robot:robot /opt/retro-opi
+
+
+#################################################################
+# VIDEO CONFIGURATION
+#################################################################
 cat >/opt/retro-opi/ropi-set-resolution.sh <<"EOF"
 #!/bin/bash
 echo "retroopi" | sudo -S true >/dev/null 2>&1
@@ -120,8 +125,9 @@ export TERM=linux
 sudo nmtui
 clear
 if ip route | grep -q default; then
-    echo -e "${GREEN}Network connection detected.${NC}"
     echo "retroopi" | sudo -S systemctl start smbd nmbd >/dev/null 2>&1
+    touch /opt/retro-opi/ropi-network-set.check
+    echo -e "${GREEN}Network connection detected. File share enabled.${NC}"
     sleep 2
 fi
 echo "retroopi" | sudo -S false >/dev/null 2>&1
@@ -160,12 +166,13 @@ if ip route | grep -q default; then
 else
     echo -e "${RED}No active network connection detected.${NC}"
     sleep 2
-    ropi-connect-network.sh
+    if [ ! -f /opt/retro-opi/ropi-network-set.check ]; then
+        ropi-connect-network
 fi
 echo
 echo
 if [ ! -f /opt/retro-opi/ropi-resolution-set.check ]; then
-    ropi-set-resolution.sh
+    ropi-set-resolution
 fi
 echo -e "${ORANGE}Starting...${NC}"
 sleep 2
