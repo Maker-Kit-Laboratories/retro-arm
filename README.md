@@ -9,7 +9,7 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 - 8GB+ Micro SD Card
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
-1. Download pre-built image here -> [retro-opi-0.12-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.12-armbian-25.08-orangepizero3.img.xz)
+1. Download pre-built image here -> [retro-opi-0.13-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.13-armbian-25.08-orangepizero3.img.xz)
 2. Use `balenaEtcher` or `Raspberry Pi Imager` to write to an SD card.
 3. Insert into Orange Pi Zero 3 and power.
 4. See Usage below.
@@ -32,8 +32,8 @@ Custom armbian build script intregrating Retro Pie and open source roms.
     - Network check.
     - Network setup. `Esc` to cancel.
     - Enable file sharing if network check passes.
-        - server: `\\retro-opi.local\roms` 
-        - user: `robot` 
+        - server: `\\retro-opi.local\roms`
+        - user: `robot`
         - password: `retroopi`
     - Run Retro Pie. `F4` to exit. Type `emlulationstation` in the console to restart.
 - Helpful custom commands:
