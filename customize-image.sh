@@ -26,6 +26,7 @@ chown -R robot:robot /home/robot
 #################################################################
 apt-get update
 apt-get install -y samba avahi-daemon
+echo -e "retroopi\nretroopi" | smbpasswd -a -s robot
 systemctl disable smbd
 systemctl disable nmbd
 systemctl daemon-reload
@@ -34,7 +35,7 @@ systemctl daemon-reload
 #################################################################
 # VIDEO CONFIGURATION (1080P)
 #################################################################
-echo "extraargs=video=HDMI-A-1:1920x1080@60" >> "/boot/armbianEnv.txt"
+echo "extraargs=video=HDMI-A-1:1280x720@60" >> "/boot/armbianEnv.txt"
 
 
 #################################################################
@@ -42,13 +43,12 @@ echo "extraargs=video=HDMI-A-1:1920x1080@60" >> "/boot/armbianEnv.txt"
 #################################################################
 cat >/home/robot/.asoundrc <<EOF
 pcm.!default {
-  type plug
-  slave.pcm "plughw:1,0"
+    type plug
+    slave.pcm "plughw:1"
 }
-
 ctl.!default {
-  type hw
-  card 1
+    type hw
+    card 1
 }
 EOF
 chown robot:robot /home/robot/.asoundrc
@@ -61,45 +61,47 @@ chmod 644 /home/robot/.asoundrc
 mkdir -p /opt/boot/
 cat >/opt/boot/retro-opi-robot.sh <<EOF
 #!/bin/bash
-echo "retroopi" | sudo -S systemctl stop nmbd >/dev/null 2>&1
-echo "retroopi" | sudo -S systemctl stop smbd >/dev/null 2>&1
-echo
-GREEN='\033[38;5;70m'
-ORANGE='\033[0;33m'
-RED='\033[38;5;203m'
-NC='\033[0m'
-echo -e "\${GREEN}  ______     ______     ______   ______     ______      \${ORANGE}     ______     ______   __    "
-echo -e "\${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \     \${ORANGE}    /\  __ \   /\  == \ /\ \   "
-echo -e "\${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \    \${ORANGE}    \ \ \/\ \  \ \  _-/ \ \ \  "
-echo -e "\${GREEN}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\   \${ORANGE}     \ \_____\  \ \_\    \ \_\ "
-echo -e "\${GREEN}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/   \${ORANGE}      \/_____/   \/_/     \/_/ "
-echo -e "\${NC}"
-echo
-echo -e "WELCOME TO \${GREEN}RETRO \${ORANGE}OPI \${RED}ARMBIAN\${NC}"
-echo "========================================"
-echo
-sleep 2
-echo
-echo
-echo
-if ip route | grep -q default; then
-    # Network connection is active.
-    echo "retroopi" | sudo -S systemctl start nmbd >/dev/null 2>&1
-    echo "retroopi" | sudo -S systemctl start smbd >/dev/null 2>&1
-else
-    echo -e "\${RED}No active network connection detected.\${NC}"
+if [ "$(tty)" = "/dev/tty1" ]; then
+    echo "retroopi" | sudo -S systemctl stop nmbd >/dev/null 2>&1
+    echo "retroopi" | sudo -S systemctl stop smbd >/dev/null 2>&1
+    echo
+    GREEN='\033[38;5;70m'
+    ORANGE='\033[0;33m'
+    RED='\033[38;5;203m'
+    NC='\033[0m'
+    echo -e "\${GREEN}  ______     ______     ______   ______     ______      \${ORANGE}     ______     ______   __    "
+    echo -e "\${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \     \${ORANGE}    /\  __ \   /\  == \ /\ \   "
+    echo -e "\${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \    \${ORANGE}    \ \ \/\ \  \ \  _-/ \ \ \  "
+    echo -e "\${GREEN}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\   \${ORANGE}     \ \_____\  \ \_\    \ \_\ "
+    echo -e "\${GREEN}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/   \${ORANGE}      \/_____/   \/_/     \/_/ "
+    echo -e "\${NC}"
+    echo
+    echo -e "WELCOME TO \${GREEN}RETRO \${ORANGE}OPI \${RED}ARMBIAN\${NC}"
+    echo "========================================"
+    echo
     sleep 2
-    echo "retroopi" | sudo -S true >/dev/null 2>&1
-    export TERM=linux
-    sudo nmtui
-    echo "retroopi" | sudo -S false >/dev/null 2>&1
-    clear
+    echo
+    echo
+    echo
+    if ip route | grep -q default; then
+        echo -e "\${GREEN}Network connection detected.\${NC}"
+        echo "retroopi" | sudo -S systemctl start nmbd >/dev/null 2>&1
+        echo "retroopi" | sudo -S systemctl start smbd >/dev/null 2>&1
+    else
+        echo -e "\${RED}No active network connection detected.\${NC}"
+        sleep 2
+        echo "retroopi" | sudo -S true >/dev/null 2>&1
+        export TERM=linux
+        sudo nmtui
+        echo "retroopi" | sudo -S false >/dev/null 2>&1
+        clear
+    fi
+    echo
+    echo
+    echo -e "\${ORANGE}Starting...\${NC}"
+    sleep 2
+    sudo -u robot -H XDG_RUNTIME_DIR="/run/user/1000" emulationstation
 fi
-echo
-echo
-echo -e "\${ORANGE}Starting...\${NC}"
-sleep 2
-sudo -u robot -H XDG_RUNTIME_DIR="/run/user/1000" emulationstation
 EOF
 chmod +x /opt/boot/retro-opi-robot.sh
 
@@ -125,12 +127,7 @@ chmod +x retropie_setup.sh
 #################################################################
 # RETROARCH SETTINGS
 #################################################################
-mkdir -p /home/robot/.config/retroarch
-cat >/home/robot/.config/retroarch/retroarch.cfg <<EOF
-audio_driver = "alsa"
-EOF
-chown -R robot:robot /home/robot/.config/retroarch
-chmod 600 /home/robot/.config/retroarch/retroarch.cfg
+echo 'audio_driver = "alsa"' >> /opt/retropie/configs/all/retroarch.cfg
 
 
 #################################################################
@@ -192,21 +189,24 @@ rsync -a /opt/boot/robot/ /home/robot/
 chown -R robot:robot /home/robot
 cat >/etc/samba/smb.conf <<EOL
 [global]
-    workgroup = WORKGROUP
-    server string = RETRO-OPI
+    log file = /var/log/samba/log.%m
+    logging = file
     map to guest = Bad User
-    netbios name = RETRO-OPI
-    guest ok = yes
-
-[RETRO-OPI-DATA]
+    max log size = 1000
+    obey pam restrictions = Yes
+    pam password change = Yes
+    panic action = /usr/share/samba/panic-action %d
+    passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+    passwd program = /usr/bin/passwd %u
+    server role = standalone server
+    server string = %h server (Samba, Ubuntu)
+    unix password sync = Yes
+    usershare allow guests = Yes
+    idmap config * : backend = tdb
+[roms]
     path = /home/robot/RetroPie/roms
-    browseable = yes
-    read only = no
-    guest ok = yes
-    force user = robot
-    public = yes
-    create mask = 0775
-    directory mask = 0775
+    read only = No
+    valid users = robot
 EOL
 systemctl enable avahi-daemon
 EOF

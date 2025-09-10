@@ -25,20 +25,20 @@ Custom armbian build script intregrating Retro Pie and open source roms.
 3.  `./create-retro-opi-image.sh`
 
 ### USAGE:
+- Credentials - user: `robot` or `root` password: `retroopi`
 - Booting will check your network connection, if none exists it will bring up a connection window. Use a keyboard to configure or hit `Esc` to cancel.
-- ROMS directory will be automatically shared under `//RETRO-OPI-DATA`.
-- user: `robot` password: `retroopi`
+- Roms directory will be automatically shared. Add it to windows as a network drive: `\\retro-opi.local\roms` - user: `robot` - password: `retroopi`
 - Retro Pie automatically starts on boot, to exist press `F4`. To restart type `emulationstation` in the console.
-- Have fun!
+-
 
 ### NOTES:
-- Version 0.09
+- Version 0.10
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W
 
 
 
-## SUPPORT:
+# SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 - Comfirm supported boards and submit any issues you come across.
