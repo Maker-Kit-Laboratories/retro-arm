@@ -15,7 +15,6 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 1. Download pre-built image here:
     - Zero 3 -> [retro-opi-0.16-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.16-armbian-25.08-orangepizero3.img.xz)
     - Zero 2W -> [retro-opi-0.16-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.16-armbian-25.08-orangepizero2w.img.xz)
-    - 3 LTS -> [retro-opi-0.16-armbian-25.08-orangepi3-lts.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.16-armbian-25.08-orangepi3-lts.img.xz)
 2. Use `balenaEtcher` or `Raspberry Pi Imager` to write to an SD card.
 3. Insert into SBC and power.
 
@@ -55,10 +54,10 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 - Tested on:
     - Zero 3
     - Zero 2W
-    - 3 LTS
 
 
 # SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 
 - Comfirm supported boards and submit any issues you come across. Thanks!
+
