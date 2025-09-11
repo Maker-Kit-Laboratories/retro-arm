@@ -12,13 +12,13 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Orange Pi Zero 3 -> [retro-opi-0.15-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero3.img.xz)
-    - Orange Pi Zero 2W -> [retro-opi-0.15-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero2w.img.xz)
+    - Zero 3 -> [retro-opi-0.15-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero3.img.xz)
+    - Zero 2W -> [retro-opi-0.15-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero2w.img.xz)
 2. Use `balenaEtcher` or `Raspberry Pi Imager` to write to an SD card.
 3. Insert into SBC and power.
 
 ### USAGE:
-- Boot Process:
+- Automated Boot Process:
     1. Automatic login to user: `robot`.
     2. Boot splash.
     3. Network check.
@@ -49,7 +49,7 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 3.  `./create-retro-opi-image.sh`
 
 ### NOTES:
-- Version 0.15
+- Version 0.16
 - Tested on:
     - Orange Pi Zero 3
     - Orange Pi Zero 2W

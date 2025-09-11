@@ -201,12 +201,14 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
+clear
 echo
 echo
+echo -e "${GREEN}RETROPIE INSTALLED${NC}"
 #################################################################
 # RETRO PIE SETTINGS
 # TODO:
-# - Add network command directly to emulationstation
+# - Add custom commands directly to emulationstation
 #################################################################
 
 
@@ -250,7 +252,10 @@ download_and_install_roms() {
     download_roms_for_system "gbc" "gbc"
 }
 clear
-read -p "Download and install open-source ROMs? [y/N]: " download_roms
+echo -e "=========================================================================="
+echo
+echo -n "Download and install open-source ROMs? [y/N]: "
+read download_roms
 if [[ "$download_roms" =~ ^[Yy]$ ]]; then
     download_and_install_roms
 fi
@@ -331,3 +336,4 @@ for pid in $current_pids; do
         fi
     fi
 done
+exit 0

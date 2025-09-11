@@ -20,7 +20,7 @@ sudo -S true
 #################################################################
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.15"
+VERSION="0.16"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"
@@ -56,7 +56,7 @@ echo -e "${GREEN}RETRO ${ORANGE}OPI: ${NC}${VERSION}"
 echo -e "${RED}ARMBIAN:   ${NC}${ARMBIAN_VERSION}"
 sleep 3
 echo
-echo -e "${NC}SBC Support List"
+echo -e "${NC}SBC List:"
 echo "========================================================="
 echo
 
