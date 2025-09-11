@@ -53,10 +53,12 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 ### NOTES:
 - Version 0.16
 - Tested on:
-    - Orange Pi Zero 3
-    - Orange Pi Zero 2W
+    - Zero 3
+    - Zero 2W
+    - 3 LTS
 
 
 # SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
+
 - Comfirm supported boards and submit any issues you come across. Thanks!
