@@ -8,7 +8,6 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 - Supported SBC:
     - Zero 3
     - Zero 2w
-    - 3 LTS
 - 8GB+ Micro SD Card
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
@@ -60,4 +59,5 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 
 - Comfirm supported boards and submit any issues you come across. Thanks!
+
 
