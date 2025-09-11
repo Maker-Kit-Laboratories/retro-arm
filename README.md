@@ -5,14 +5,39 @@
 Custom armbian build script intregrating Retro Pie and open source ROMs.
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
-- Orange Pi Zero 3 SBC
+- Supported SBC:
+    - Zero 3
+    - Zero 2w
 - 8GB+ Micro SD Card
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
-1. Download pre-built image here -> [retro-opi-0.15-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero3.img.xz)
+1. Download pre-built image here:
+    - Orange Pi Zero 3 -> [retro-opi-0.15-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero3.img.xz)
+    - Orange Pi Zero 2W -> [retro-opi-0.15-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.15-armbian-25.08-orangepizero2w.img.xz)
 2. Use `balenaEtcher` or `Raspberry Pi Imager` to write to an SD card.
-3. Insert into Orange Pi Zero 3 and power.
-4. See Usage below.
+3. Insert into SBC and power.
+
+### USAGE:
+- Boot Process:
+    1. Automatic login to user: `robot`.
+    2. Boot splash.
+    3. Network check.
+    4. Network setup. `Esc` to cancel.
+    5. Enable file sharing if network check passes.
+        - server: `\\retro-opi.local\roms`
+        - user: `robot`
+        - password: `retroopi`
+    6. Run Retro Pie. `F4` to exit. Type `emlulationstation` in the console to restart.
+- Helpful custom commands:
+    - `ropi-set-resolution` : Sets a custom video resolution on boot.
+    - `ropi-connect-network` : Setup a network connection and file sharing.
+- Credentials:
+    - user: `robot`  
+    - password: `retroopi`
+- Hostname: `retro-opi`
+- SSH command: `ssh robot@retro-opi.local`
+
+# BUILD (OPTIONAL):
 
 ### BUILD REQUIREMENTS:
 - Orange Pi SBC
@@ -23,26 +48,6 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 2.  `cd RETRO-OPI`
 3.  `./create-retro-opi-image.sh`
 
-### USAGE:
-- Boot Process:
-    - Automatic login to user: `robot`.
-    - Boot splash.
-    - Network check.
-    - Network setup. `Esc` to cancel.
-    - Enable file sharing if network check passes.
-        - server: `\\retro-opi.local\roms`
-        - user: `robot`
-        - password: `retroopi`
-    - Run Retro Pie. `F4` to exit. Type `emlulationstation` in the console to restart.
-- Helpful custom commands:
-    - `ropi-set-resolution` : Sets a custom video resolution on boot.
-    - `ropi-connect-network` : Setup a network connection and file sharing.
-- Credentials:
-    - user: `robot`  
-    - password: `retroopi`
-- Hostname: `retro-opi`
-- SSH command: `ssh robot@retro-opi.local`
-
 ### NOTES:
 - Version 0.15
 - Tested on:
@@ -52,6 +57,4 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 
 # SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
-
 - Comfirm supported boards and submit any issues you come across. Thanks!
-
