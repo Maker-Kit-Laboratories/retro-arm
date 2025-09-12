@@ -22,7 +22,7 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 3. Insert into SBC and power.
 
 ### USAGE:
-#### <u>Automated Boot Process:</u>
+#### Automated Boot Process:
 1. Automatic login to user: `robot`.
 2. Ascii splash.
 3. Network check.
@@ -32,16 +32,16 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
     - user: `robot`
     - password: `retroopi`
 6. Retro Pie start.
-#### <u>Custom commands:</u>
+#### Custom commands:
 - `ropi-play` :  Start Retro Pie.
 - `ropi-resolution` : Sets a custom video resolution on boot.
 - `ropi-connect` : Setup a network connection and file sharing.
-#### <u>Credentials:</u>
+#### Credentials:
 - user: `robot` / `root`
 - password: `retroopi`
-#### <u>Hostname:</u>
+#### Hostname: 
 - `retro-opi`
-#### <u>SSH command:</u> 
+#### SSH command: 
 - `ssh robot@retro-opi.local`
 
 # BUILD (OPTIONAL):
