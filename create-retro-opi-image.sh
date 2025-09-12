@@ -34,7 +34,7 @@ sudo -v
 #################################################################
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.17"
+VERSION="0.18"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"

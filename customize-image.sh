@@ -163,11 +163,7 @@ EOF
 #################################################################
 chmod +x /opt/retro-opi/ropi-boot-once.sh
 chown robot:robot /opt/retro-opi/ropi-boot-once.sh
-
-
-#################################################################
-# BOOT SCRIPT SERVICE
-#################################################################
+cp -f /opt/retro-opi/ropi-boot-once.service /etc/systemd/system/ropi-boot-once.service
 ln -sf /etc/systemd/system/ropi-boot-once.service /etc/systemd/system/multi-user.target.wants/ropi-boot-once.service
 
 

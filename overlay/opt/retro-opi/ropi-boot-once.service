@@ -1,5 +1,5 @@
 [Unit]
-Description=Retro OPi - Initial Boot Script
+Description=RETRO-OPI - Initial Boot Script
 
 [Service]
 Type=oneshot
