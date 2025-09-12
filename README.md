@@ -2,7 +2,7 @@
 ![Retro Opi Image](./documentation/retro-opi-image-3.png)
 
 ### DESCRIPTION:
-- Custom armbian build script intregrating Retro Pie and open source ROMs.
+- Custom armbian build script intregrating Retro Pie and optional retro-brew ROMs.
 - Version 0.17
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
@@ -14,7 +14,7 @@
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Zero 3 -> [retro-opi-0.17-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.16-armbian-25.08-orangepizero3.img.xz)
+    - Zero 3 -> [retro-opi-0.17-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.17-armbian-25.08-orangepizero3.img.xz)
     - Zero 2w -> Coming...
     - 3 LTS -> Coming...
 2. Write the image to an SD card using programs such as:
@@ -57,9 +57,15 @@
 ### BUILD INSTRUCTIONS:
 1.  `git clone https://github.com/Maker-Kit-Laboratories/RETRO-OPI.git`
 2.  `cd RETRO-OPI`
-3.  `./create-retro-opi-image.sh`
+3.  `./create-retro-opi-image.sh` Optional arguments: `BOARD=<configname>`
+
+
+## LICENSE:
+- CC BY 4.0
+- [Armbian](https://www.armbian.com/), [RetroPie](https://retropie.org.uk/), and all optionally included open source [retrobrews](https://retrobrews.github.io/) are under their respective licenses.
+
 
 # SUPPORT:
-- If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
+- If you'd like to support this project, consider buying a RETRO-OPI kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 
 - Comfirm supported boards and submit any issues you come across. Thanks!

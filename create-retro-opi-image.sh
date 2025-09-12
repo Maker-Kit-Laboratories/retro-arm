@@ -3,12 +3,7 @@
 # RETRO-OPI ARMBIAN IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
 # NOTES:
-# - Armbian, Retro Pie and all included open source games are under their respective licenses.
-# - This script automates the process of creating a RETRO-OPI Armbian image with open source games pre-installed.
-# - Tested on:
-#   - Orange Pi Zero 3
-#   - Orange Pi Zero 2w
-#   - Orange Pi 3 LTS
+# - This script automates the process of creating a RETRO-OPI Armbian image with open source games optionally pre-installed.
 #
 #################################################################
 set -e
