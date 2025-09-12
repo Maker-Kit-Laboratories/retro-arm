@@ -8,19 +8,38 @@
 # - Tested on:
 #   - Orange Pi Zero 3
 #   - Orange Pi Zero 2w
+#   - Orange Pi 3 LTS
 #
-#   
 #################################################################
 set -e
 sudo -S true
 
 
 #################################################################
+# ARGUMENTS
+#################################################################
+for arg in "$@"; do
+    case $arg in
+        BOARD=*)
+            BOARD="${arg#BOARD=}"
+            ;;
+    esac
+done
+
+
+#################################################################
 # INIT
+#################################################################
+sudo -v
+( while true; do sudo -n true; sleep 60; done ) 2>/dev/null &
+
+
+#################################################################
+# DEFAULTS
 #################################################################
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.16"
+VERSION="0.17"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"
@@ -56,32 +75,38 @@ echo -e "${GREEN}RETRO ${ORANGE}OPI: ${NC}${VERSION}"
 echo -e "${RED}ARMBIAN:   ${NC}${ARMBIAN_VERSION}"
 sleep 3
 echo
-echo -e "${NC}SBC List:"
-echo "========================================================="
-echo
+
 
 
 #################################################################
 # BOARD SELECTION
 #################################################################
-boards=()
-i=1
-for file in build/config/boards/orangepi*.csc; do
-    [ -e "$file" ] || continue
-    board=$(basename "$file" .csc)
-    echo "$i) $board"
-    boards+=("$board")
-    ((i++))
-done
-echo
-read -p "Enter board number: " selection
-if ! [[ "$selection" =~ ^[0-9]+$ ]] || [ "$selection" -lt 1 ] || [ "$selection" -gt "${#boards[@]}" ]; then
-    echo -e "${RED}Invalid selection."
-    exit 1
+if [ -z "$BOARD" ]; then
+    echo -e "${NC}SBC List (support not confirmed):"
+    echo "========================================================="
+    echo
+    boards=()
+    i=1
+    for file in build/config/boards/orangepi*.csc; do
+        [ -e "$file" ] || continue
+        board=$(basename "$file" .csc)
+        echo "$i) $board"
+        boards+=("$board")
+        ((i++))
+    done
+    echo
+    read -p "Board: " selection
+    if ! [[ "$selection" =~ ^[0-9]+$ ]] || [ "$selection" -lt 1 ] || [ "$selection" -gt "${#boards[@]}" ]; then
+        echo -e "${RED}Invalid selection."
+        exit 1
+    fi
+    BOARD="${boards[$((selection-1))]}"
+    echo -e "${NC}Board: ${ORANGE}$BOARD"
+    echo -e "${NC}"
+else
+    echo -e "${NC}Board: ${ORANGE}$BOARD"
+    echo -e "${NC}"
 fi
-BOARD="${boards[$((selection-1))]}"
-echo -e "${NC}Board: ${ORANGE}$BOARD"
-echo -e "${NC}"
 
 
 #################################################################

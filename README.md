@@ -2,10 +2,11 @@
 ![Retro Opi Image](./documentation/retro-opi-image-3.png)
 
 ### DESCRIPTION:
-Custom armbian build script intregrating Retro Pie and open source ROMs.
+- Custom armbian build script intregrating Retro Pie and open source ROMs.
+- Version 0.17
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
-- Supported SBC:
+- Tested SBCs:
     - Zero 3
     - Zero 2w
     - 3 LTS
@@ -13,8 +14,9 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Zero 3 -> [retro-opi-0.16-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.16-armbian-25.08-orangepizero3.img.xz)
-    - More coming...
+    - Zero 3 -> [retro-opi-0.17-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.16-armbian-25.08-orangepizero3.img.xz)
+    - Zero 2w -> Coming...
+    - 3 LTS -> Coming...
 2. Write the image to an SD card using programs such as:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
@@ -25,13 +27,15 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 #### Automated Boot Process:
 1. Automatic login to user: `robot`.
 2. Ascii splash.
-3. Network check.
-4. Network setup. `Esc` to cancel.
+3. Network check. 
+4. `INITIAL BOOT ONLY` - Network setup. `Esc` to cancel.
 5. Enable file sharing if network check passes.
     - server: `\\retro-opi.local\roms`
     - user: `robot`
     - password: `retroopi`
-6. Retro Pie start.
+6. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 or below depending on your SBC's capabilities.
+7. `INITIAL BOOT ONLY` - Reboot.
+8. Retro Pie starts.
 #### Custom commands:
 - `ropi-play` :  Start Retro Pie.
 - `ropi-resolution` : Sets a custom video resolution on boot.
@@ -55,14 +59,7 @@ Custom armbian build script intregrating Retro Pie and open source ROMs.
 2.  `cd RETRO-OPI`
 3.  `./create-retro-opi-image.sh`
 
-### NOTES:
-- Version 0.17
-- Tested on:
-    - Zero 3
-    - Zero 2W
-    - 3 LTS
-
-
 # SUPPORT:
 - If you'd like to support this project, consider buying a kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
+
 - Comfirm supported boards and submit any issues you come across. Thanks!
