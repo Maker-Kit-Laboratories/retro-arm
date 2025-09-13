@@ -34,7 +34,7 @@ sudo -v
 #################################################################
 NAME="retro-opi"
 ARMBIAN_VERSION="25.08"
-VERSION="0.18"
+VERSION="0.2.0"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"
@@ -50,25 +50,25 @@ NC='\033[0m'
 if [ ! -d build ]; then
     git clone --branch v25.08 --depth=1 https://github.com/armbian/build.git
 fi
-clear
+clear -x
 
 
 #################################################################
 # HEADER
 #################################################################
 echo
-echo -e "${GREEN}  ______     ______     ______   ______     ______      ${ORANGE}     ______     ______   __    "
-echo -e "${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \     ${ORANGE}    /\  __ \   /\  == \ /\ \   "
-echo -e "${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \    ${ORANGE}    \ \ \/\ \  \ \  _-/ \ \ \  "
-echo -e "${GREEN}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\   ${ORANGE}     \ \_____\  \ \_\    \ \_\ "
-echo -e "${GREEN}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/   ${ORANGE}      \/_____/   \/_/     \/_/ "
+echo -e "${ORANGE}  ______     ______     ______   ______     ______          ______     ______   __    "
+echo -e "${ORANGE} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \        /\  __ \   /\  == \ /\ \   "
+echo -e "${ORANGE} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \       \ \ \/\ \  \ \  _-/ \ \ \  "
+echo -e "${ORANGE}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\       \ \_____\  \ \_\    \ \_\ "
+echo -e "${ORANGE}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/        \/_____/   \/_/     \/_/ "
 echo -e "${NC}"
 echo
-echo -e "MAKER KIT LABORATORIES - ${GREEN}RETRO ${ORANGE}OPI ${RED}ARMBIAN ${NC}IMAGE CREATOR"
+echo -e "MAKER KIT LABORATORIES - ${ORANGE}RETRO OPI ${RED}ARMBIAN ${NC}IMAGE CREATOR"
 echo "========================================================="
-echo -e "${GREEN}RETRO ${ORANGE}OPI: ${NC}${VERSION}"
+echo -e "${ORANGE}RETRO OPI: ${NC}${VERSION}"
 echo -e "${RED}ARMBIAN:   ${NC}${ARMBIAN_VERSION}"
-sleep 3
+sleep 1
 echo
 
 
@@ -110,6 +110,9 @@ fi
 mkdir -p build/userpatches
 cp customize-image.sh build/userpatches/
 sudo chmod +x build/userpatches/customize-image.sh
+rm -rf build/userpatches/overlay
+rsync -av overlay/ build/userpatches/overlay/
+
 
 
 #################################################################
@@ -135,7 +138,8 @@ if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
 else
     echo -e "${GREEN}IMAGE COMPRESSED SUCCESSFULLY${NC}"
     echo -e "${GREEN}==============================${NC}"
-    mv -f "${IMAGE_FILE}.xz" "${COMPRESSED_IMAGE_FILE}"
+    mkdir -p output
+    mv -f "${IMAGE_FILE}.xz" "output/${COMPRESSED_IMAGE_FILE}"
     echo -e "${ORANGE}${COMPRESSED_IMAGE_FILE}${NC}"
     exit 0
 fi

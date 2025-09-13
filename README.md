@@ -3,10 +3,10 @@
 
 ### DESCRIPTION:
 - Custom armbian build script intregrating Retro Pie and optional retro-brew ROMs.
-- Version 0.18
+- Version 0.2.0
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
-- Tested SBCs:
+- Tested Orange Pi SBCs:
     - Zero 3
     - Zero 2w
     - 3 LTS
@@ -25,24 +25,29 @@
 
 ### USAGE:
 #### Automated Boot Process:
-1. Automatic login to user: `robot`.
-2. Ascii splash.
+0. Automatic login to user: `robot`.
+1. Ascii splash.
+2. `INITIAL BOOT ONLY` - Set system password.
 3. Network check. 
 4. `INITIAL BOOT ONLY` - Network setup. `Esc` to cancel.
 5. Enable file sharing if network check passes.
     - server: `\\retro-opi.local\roms`
     - user: `robot`
-    - password: `retroopi`
-6. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 or below depending on your SBC's capabilities.
+    - password: `<system password>`
+6. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 suggested depending on your SBC's capabilities.
 7. `INITIAL BOOT ONLY` - Reboot.
 8. Retro Pie starts.
-#### Custom commands:
+#### Commands:
+- Key `F4` : Exit Retro Pie.
 - `ropi-play` :  Start Retro Pie.
 - `ropi-resolution` : Sets a custom video resolution on boot.
 - `ropi-connect` : Setup a network connection and file sharing.
+- `ropi-password` : Change system password.
+- `ropi-reset` : Clear all installed ROMs.
+- `ropi-retrobrew` : Download retrobew ROMs.
 #### Credentials:
 - user: `robot` / `root`
-- password: `retroopi`
+- password: `<system password>`
 #### Hostname: 
 - `retro-opi`
 #### SSH command: 
@@ -55,9 +60,9 @@
 - Linux PC
 
 ### BUILD INSTRUCTIONS:
-1.  `git clone https://github.com/Maker-Kit-Laboratories/RETRO-OPI.git`
-2.  `cd RETRO-OPI`
-3.  `./create-retro-opi-image.sh` Optional arguments: `BOARD=<configname>`
+1. `git clone https://github.com/Maker-Kit-Laboratories/RETRO-OPI.git`
+2. `cd RETRO-OPI`
+3. `./create-retro-opi-image.sh` Optional arguments: `BOARD=<configname>`
 
 
 ## LICENSE:
@@ -66,6 +71,5 @@
 
 
 # SUPPORT:
-- If you'd like to support this project, consider buying a RETRO-OPI kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
-
+- If you'd like to support this project, consider buying a `RETRO-OPI` kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 - Comfirm supported boards and submit any issues you come across. Thanks!

@@ -1,4 +1,5 @@
 #!/bin/bash
+ROPI=$(pass show ropi/stuff) > /dev/null 2>&1
 BLUE='\033[38;5;45m'
 RED='\033[38;5;203m'
 NC='\033[0m'
@@ -18,7 +19,7 @@ PS3=" "
 select mode in "${MODES[@]}"; do
     [ -n "$mode" ] || { echo -e "${RED}Invalid${NC}"; res="1280x720"; continue; }
     res=${mode}
-    echo "retroopi" | sudo -S true >/dev/null 2>&1
+    echo "$ROPI" | sudo -S true >/dev/null 2>&1
     sudo sed -i '/^disp_mode=/d' /boot/armbianEnv.txt
     echo "disp_mode=${res}" | sudo tee -a /boot/armbianEnv.txt >/dev/null
     sudo sed -i '/^extraargs=/d' /boot/armbianEnv.txt
