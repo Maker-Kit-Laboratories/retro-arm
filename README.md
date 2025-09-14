@@ -15,7 +15,7 @@
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
     - Zero 3 -> [retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz)
-    - Zero 2w -> Coming...
+    - Zero 2w -> [retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz)
     - 3 LTS -> Coming...
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
