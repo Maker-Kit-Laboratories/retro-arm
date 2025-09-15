@@ -1,4 +1,4 @@
-# RETRO-ARMBIAN CONSOLE
+# RETRO-ARM CONSOLE
 ![Retro Arm Image](./documentation/retro-arm-image-3.png)
 
 ### DESCRIPTION:
