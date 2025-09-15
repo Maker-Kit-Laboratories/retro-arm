@@ -139,7 +139,7 @@ fi
 echo
 echo "COMPRESSING IMAGE..."
 IMAGE_FILE=$(ls -t armbian/output/images/*.img | head -n 1)
-COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-${ARMBIAN_VERSION}-${BOARD}.img.xz"
+COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-armbian-${ARMBIAN_VERSION}-${BOARD}.img.xz"
 if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
     echo -e "${RED}IMAGE COMPRESSION FAILED${NC}"
     exit 1
