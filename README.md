@@ -15,9 +15,8 @@
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Orange Pi Zero 3 -> [retro-arm-0.2.0-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz)
-    - Orange Pi Zero 2W -> [retro-arm-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz)
-    - Orange Pi 3 LTS -> [retro-arm-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepi3-lts.img.xz)
+    - Orange Pi Zero 3 -> [retro-arm-0.2.0-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.2-armbian-25.08-orangepizero3.img.xz)
+    - More coming...
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
