@@ -1,22 +1,23 @@
-# RETRO-OPI CONSOLE
-![Retro Opi Image](./documentation/retro-opi-image-3.png)
+# RETRO-ARMBIAN CONSOLE
+![Retro Armbian Image](./documentation/retro-armbian-image-3.png)
 
 ### DESCRIPTION:
-- Custom armbian build script intregrating Retro Pie and optional retro-brew ROMs.
-- Version 0.2.0
+- Custom Armbian build script intregrating Retro Pie and optional retro-brew ROMs.
+- Version 0.2.1
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
-- Tested Orange Pi SBCs:
-    - Zero 3
-    - Zero 2w
-    - 3 LTS
-- 8GB+ Micro SD Card
+- Tested SBCs:
+    - Orange Pi Zero 3
+    - Orange Pi Zero 2w
+    - Orange Pi 3 LTS
+- 8GB+ Micro SD card.
+- `INITIAL BOOT ONLY` - Keyboard.
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Zero 3 -> [retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz)
-    - Zero 2w -> [retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz)
-    - 3 LTS -> [retro-opi-0.2.0-armbian-25.08-orangepi3-lts.img.xz](https://makerkitlab.xyz/data/kit/retroopi/retro-opi-0.2.0-armbian-25.08-orangepi3-lts.img.xz)
+    - Orange Pi Zero 3 -> [retro-armbian-0.2.0-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz)
+    - Orange Pi Zero 2W -> [retro-armbian-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz)
+    - Orange Pi 3 LTS -> [retro-armbian-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepi3-lts.img.xz)
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
@@ -28,10 +29,10 @@
 0. Automatic login to user: `robot`.
 1. Ascii splash.
 2. `INITIAL BOOT ONLY` - Set system password.
-3. Network check. 
-4. `INITIAL BOOT ONLY` - Network setup. `Esc` to cancel.
+3. `INITIAL BOOT ONLY` - Network setup. `Esc` to cancel.
+4. Network check. 
 5. Enable file sharing if network check passes.
-    - server: `\\retro-opi.local\roms`
+    - server: `\\retro-armbian.local\roms`
     - user: `robot`
     - password: `<system password>`
 6. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 suggested depending on your SBC's capabilities.
@@ -39,32 +40,35 @@
 8. Retro Pie starts.
 #### Commands:
 - Key `F4` : Exit Retro Pie.
-- `ropi-play` :  Start Retro Pie.
-- `ropi-resolution` : Sets a custom video resolution on boot.
-- `ropi-connect` : Setup a network connection and file sharing.
-- `ropi-password` : Change system password.
-- `ropi-reset` : Clear all installed ROMs.
-- `ropi-retrobrew` : Download retrobew ROMs.
+- `rarm-play` :  Start Retro Pie.
+- `rarm-resolution` : Sets a custom video resolution on boot.
+- `rarm-connect` : Setup a network connection and file sharing.
+- `rarm-password` : Change system password.
+- `rarm-retrobrew` : Install retrobew ROMs.
+- `rarm-reset` : Reset console. Clear installed ROMs. Clear resolution. Clear network.
 #### Credentials:
 - user: `robot` / `root`
 - password: `<system password>`
 #### Hostname: 
-- `retro-opi`
+- `retro-armbian`
 #### SSH command: 
-- `ssh robot@retro-opi.local`
+- `ssh robot@retro-armbian.local`
 #### Notes:
-- Initial boot takes longer
+- Initial boot takes longer depending on hardware.
+- TODO:
+    - Include rarm-* commands in Retro Pie menu.
 
 # BUILD (OPTIONAL):
 
 ### BUILD REQUIREMENTS:
-- Orange Pi SBC
-- Linux PC
+- Armbian supported SBC.
+- Linux PC.
 
 ### BUILD INSTRUCTIONS:
-1. `git clone https://github.com/Maker-Kit-Laboratories/RETRO-OPI.git`
-2. `cd RETRO-OPI`
-3. `./create-retro-opi-image.sh` Optional arguments: `BOARD=<configname>`
+1. `git clone https://github.com/Maker-Kit-Laboratories/retro-armbian.git`
+2. `cd retro-armbian`
+3. `./create-retro-armbian-image.sh` Optional arguments: `BOARD=<configname>`
+4. Follow instructions and build with desired setup.
 
 
 ## LICENSE:
@@ -73,5 +77,5 @@
 
 
 # SUPPORT:
-- If you'd like to support this project, consider buying a `RETRO-OPI` kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
+- If you'd like to support this project, consider buying a `RETRO-ARMBIAN` kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 - Comfirm supported boards and submit any issues you come across. Thanks!

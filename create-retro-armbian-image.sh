@@ -1,9 +1,9 @@
 #!/bin/bash
 #################################################################
-# RETRO-OPI ARMBIAN IMAGE CREATOR
+# RETRO-ARMBIAN IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
 # NOTES:
-# - This script automates the process of creating a RETRO-OPI Armbian image with open source games optionally pre-installed.
+# - This script automates the process of creating a RETRO-ARMBIAN image with open source games optionally pre-installed.
 #
 #################################################################
 set -e
@@ -32,57 +32,61 @@ sudo -v
 #################################################################
 # DEFAULTS
 #################################################################
-NAME="retro-opi"
+NAME="retro-armbian"
 ARMBIAN_VERSION="25.08"
-VERSION="0.2.0"
+VERSION="0.2.1"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"
 GREEN='\033[38;5;70m'
-ORANGE='\033[38;5;214m'
+BLUE='\033[38;5;39m'
 RED='\033[38;5;203m'
 NC='\033[0m'
 
 
 #################################################################
-# CLONE ARMBIAN
-#################################################################
-if [ ! -d build ]; then
-    git clone --branch v25.08 --depth=1 https://github.com/armbian/build.git
-fi
-clear -x
-
-
-#################################################################
 # HEADER
 #################################################################
+echo -e "${GREEN}  ______     ______     ______   ______     ______    "${RED}'  ______     ______     __    __     ______     __     ______     __   __     '
+echo -e "${GREEN} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \   "${RED}' /\  __ \   /\  == \   /\ "-./  \   /\  == \   /\ \   /\  __ \   /\ "-.\ \    '
+echo -e "${GREEN} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \  "${RED}' \ \  __ \  \ \  __<   \ \ \-./\ \  \ \  __<   \ \ \  \ \  __ \  \ \ \-.  \   '
+echo -e "${GREEN}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\ "${RED}'  \ \_\ \_\  \ \_\ \_\  \ \_\ \ \_\  \ \_____\  \ \_\  \ \_\ \_\  \ \_\\ "\_\ ' 
+echo -e "${GREEN}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/ "${RED}'   \/_/\/_/   \/_/ /_/   \/_/  \/_/   \/_____/   \/_/   \/_/\/_/   \/_/ \/_/  '
 echo
-echo -e "${ORANGE}  ______     ______     ______   ______     ______          ______     ______   __    "
-echo -e "${ORANGE} /\  == \   /\  ___\   /\__  _\ /\  == \   /\  __ \        /\  __ \   /\  == \ /\ \   "
-echo -e "${ORANGE} \ \  __<   \ \  __\   \/_/\ \/ \ \  __<   \ \ \/\ \       \ \ \/\ \  \ \  _-/ \ \ \  "
-echo -e "${ORANGE}  \ \_\ \_\  \ \_____\    \ \_\  \ \_\ \_\  \ \_____\       \ \_____\  \ \_\    \ \_\ "
-echo -e "${ORANGE}   \/_/ /_/   \/_____/     \/_/   \/_/ /_/   \/_____/        \/_____/   \/_/     \/_/ "
-echo -e "${NC}"
-echo
-echo -e "MAKER KIT LABORATORIES - ${ORANGE}RETRO OPI ${RED}ARMBIAN ${NC}IMAGE CREATOR"
-echo "========================================================="
-echo -e "${ORANGE}RETRO OPI: ${NC}${VERSION}"
-echo -e "${RED}ARMBIAN:   ${NC}${ARMBIAN_VERSION}"
+echo -e "${BLUE}MAKER KIT LABORATORIES${NC} - ${GREEN}RETRO${NC} ${RED}ARMBIAN${NC} - IMAGE CREATOR"
+echo -e "${NC}========================================================="
+echo -e "${GREEN}RETRO ${RED}ARMBIAN: ${NC}${VERSION}"
+echo -e "${RED}ARMBIAN:       ${NC}${ARMBIAN_VERSION}"
 sleep 1
 echo
 
+
+#################################################################
+# CLONE ARMBIAN SUB-MODULE
+#################################################################
+if [ ! -d "armbian" ]; then
+    echo -e "${BLUE}Initializing Armbian submodule...${NC}"
+    git submodule update --init --recursive
+else
+    echo -e "${BLUE}Updating Armbian submodule...${NC}"
+    git submodule update --remote --recursive armbian
+fi
+echo -e "${GREEN}Armbian submodule ready.${NC}"
+sleep 1
 
 
 #################################################################
 # BOARD SELECTION
 #################################################################
+echo
 if [ -z "$BOARD" ]; then
-    echo -e "${NC}SBC List (support not confirmed):"
-    echo "========================================================="
+    echo -e "${BLUE}SBC List (support not confirmed):"
+    echo -e "=========================================================${NC}"
     echo
+    sleep 2
     boards=()
     i=1
-    for file in build/config/boards/orangepi*.csc; do
+    for file in armbian/config/boards/*.csc; do
         [ -e "$file" ] || continue
         board=$(basename "$file" .csc)
         echo "$i) $board"
@@ -107,21 +111,23 @@ fi
 #################################################################
 # COPY CONFIG FILES
 #################################################################
-mkdir -p build/userpatches
-cp customize-image.sh build/userpatches/
-sudo chmod +x build/userpatches/customize-image.sh
-rm -rf build/userpatches/overlay
-rsync -av overlay/ build/userpatches/overlay/
+mkdir -p armbian/userpatches
+cp customize-image.sh armbian/userpatches/
+sudo chmod +x armbian/userpatches/customize-image.sh
+rm -rf armbian/userpatches/overlay
+rsync -av overlay/ armbian/userpatches/overlay/
 
 
 
 #################################################################
 # BUILD
 #################################################################
-if ! build/compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
+if ! armbian/compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
+    echo
     echo -e "${RED}IMAGE BUILD FAILED${NC}"
     exit 1
 else
+    echo
     echo -e "${GREEN}IMAGE BUILT SUCCESSFULLY${NC}"
     echo -e "${GREEN}=========================${NC}"
 fi
@@ -130,8 +136,10 @@ fi
 #################################################################
 # COMPRESS IMAGE
 #################################################################
-IMAGE_FILE=$(ls -t build/output/images/*.img | head -n 1)
-COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-armbian-${ARMBIAN_VERSION}-${BOARD}.img.xz"
+echo
+echo "COMPRESSING IMAGE..."
+IMAGE_FILE=$(ls -t armbian/output/images/*.img | head -n 1)
+COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-${ARMBIAN_VERSION}-${BOARD}.img.xz"
 if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
     echo -e "${RED}IMAGE COMPRESSION FAILED${NC}"
     exit 1

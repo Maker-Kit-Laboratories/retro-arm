@@ -1,17 +1,17 @@
 #!/bin/bash
-ROPI=$(pass show ropi/stuff) > /dev/null 2>&1
+RARM=$(pass show rarm/stuff) > /dev/null 2>&1
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-if [ -f /opt/retro-opi/ropi-password.check ]; then
-    rm -f /opt/retro-opi/ropi-password.check
+if [ -f /opt/retro-armbian/ropi-password.check ]; then
+    rm -f /opt/retro-armbian/ropi-password.check
 fi
 change_password() {
     local user="$1"
     local password="$2"
     echo "$user:$password" | sudo chpasswd
 }
-echo "$ROPI" | sudo -S true >/dev/null 2>&1
+echo "$RARM" | sudo -S true >/dev/null 2>&1
 echo -e "${GREEN}Password Update:${NC}"
 echo -e "${GREEN}================${NC}"
 while true; do
@@ -24,9 +24,9 @@ while true; do
         change_password "root" "$pass1"
         ROBOT_GPG=$(sudo -u robot -H gpg --list-secret-keys --with-colons | awk -F: '/^fpr:/ {print $10; exit}') >/dev/null 2>&1
         sudo -u robot -H pass init "$ROBOT_GPG" >/dev/null 2>&1
-        echo "$pass1" | sudo -u robot -H pass insert -e -f ropi/stuff >/dev/null 2>&1
+        echo "$pass1" | sudo -u robot -H pass insert -e -f rarm/stuff >/dev/null 2>&1
         (echo "$pass1"; echo "$pass1") | smbpasswd -s >/dev/null 2>&1
-        touch /opt/retro-opi/ropi-password.check
+        touch /opt/retro-armbian/ropi-password.check
         clear
         echo -e "${GREEN}Password updated.${NC}"
         sleep 1

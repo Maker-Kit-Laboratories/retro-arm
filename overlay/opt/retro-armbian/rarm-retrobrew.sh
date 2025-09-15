@@ -9,8 +9,7 @@ download_roms_for_system() {
     cd "/opt/roms/$system"
     wget --no-check-certificate -q -O master.zip "https://codeload.github.com/retrobrews/${shorthand}-games/zip/master"
     unzip master.zip
-    mkdir -p "/opt/retro-opi/robot/RetroPie/roms/$system"
-    mv -v "${shorthand}-games-master"/* "/opt/retro-opi/robot/RetroPie/roms/$system"
+    mv -f -v "${shorthand}-games-master"/* "/home/robot/RetroPie/roms/$system"
     cd ..
     rm -rf "/opt/roms/$system"
 }

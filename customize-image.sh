@@ -11,11 +11,11 @@ captured_pids=$(ls /proc | grep '^[0-9]\+$')
 #################################################################
 # USERS
 #################################################################
-echo "root:retroopi" | chpasswd
+echo "root:retroarm" | chpasswd
 useradd -m -s /bin/bash robot
 mkdir -p /home/robot
 cp -a /etc/skel/. /home/robot/
-echo "robot:retroopi" | chpasswd
+echo "robot:retroarm" | chpasswd
 echo "robot ALL=(ALL) ALL" >/etc/sudoers.d/robot
 chmod 440 /etc/sudoers.d/robot
 chown -R robot:robot /home/robot
@@ -32,18 +32,18 @@ systemctl disable smbd nmbd
 #################################################################
 # SYNC FILES
 #################################################################
-mkdir -p /opt/retro-opi/
+mkdir -p /opt/retro-armbian/
 rsync -av /tmp/overlay/ /
-chown -R robot:robot /opt/retro-opi
+chown -R robot:robot /opt/retro-armbian
 chown -R robot:robot /home/robot
-cp -f /opt/retro-opi/watermark.png /usr/share/plymouth/themes/armbian/watermark.png
+cp -f /opt/retro-armbian/watermark.png /usr/share/plymouth/themes/armbian/watermark.png
 
 
 #################################################################
 # ROBOT BOOT SCRIPT
 #################################################################
-chmod +x /opt/retro-opi/ropi-boot-robot.sh
-chown robot:robot /opt/retro-opi/ropi-boot-robot.sh
+chmod +x /opt/retro-armbian/rarm-boot-robot.sh
+chown robot:robot /opt/retro-armbian/rarm-boot-robot.sh
 
 
 #################################################################
@@ -51,7 +51,7 @@ chown robot:robot /opt/retro-opi/ropi-boot-robot.sh
 #################################################################
 cat >>/home/robot/.profile <<"EOF"
 if [ $(tty) = "/dev/tty1" ]; then
-    /opt/retro-opi/ropi-boot-robot.sh
+    /opt/retro-armbian/rarm-boot-robot.sh
 fi
 EOF
 
@@ -66,6 +66,7 @@ chmod +x retropie_setup.sh
 ./retropie_setup.sh
 clear -x
 echo -e "RETROPIE SETUP COMPLETE"
+echo -e "======================"
 
 
 #################################################################
@@ -91,18 +92,18 @@ set_retroarch_config "audio_driver" "alsa"
 
 
 #################################################################
-# ROPI-RETROBREW COMMAND
+# RARM-RETROBREW COMMAND
 #################################################################
-chmod +x /opt/retro-opi/ropi-retrobrew.sh
-chown robot:robot /opt/retro-opi/ropi-retrobrew.sh
-ln -sf /opt/retro-opi/ropi-retrobrew.sh /usr/local/bin/ropi-retrobrew
-ropi-retrobrew
+chmod +x /opt/retro-armbian/rarm-retrobrew.sh
+chown robot:robot /opt/retro-armbian/rarm-retrobrew.sh
+ln -sf /opt/retro-armbian/rarm-retrobrew.sh /usr/local/bin/rarm-retrobrew
+rarm-retrobrew
 
 
 #################################################################
 # STORE ROBOT USER DATA
 #################################################################
-rsync -a /home/robot/ /opt/retro-opi/robot/
+rsync -a /home/robot/ /opt/retro-armbian/robot/
 
 
 #################################################################
@@ -115,57 +116,57 @@ ExecStart=
 ExecStart=/sbin/agetty --autologin robot --noclear %I $TERM
 
 [Unit]
-After=ropi-boot-once.service
+After=rarm-boot-once.service
 EOF
 
 
 #################################################################
 # INITIAL BOOT SCRIPT
 #################################################################
-chmod +x /opt/retro-opi/ropi-boot-once.sh
-chown robot:robot /opt/retro-opi/ropi-boot-once.sh
-cp -f /opt/retro-opi/ropi-boot-once.service /etc/systemd/system/ropi-boot-once.service
-ln -sf /etc/systemd/system/ropi-boot-once.service /etc/systemd/system/multi-user.target.wants/ropi-boot-once.service
+chmod +x /opt/retro-armbian/rarm-boot-once.sh
+chown robot:robot /opt/retro-armbian/rarm-boot-once.sh
+cp -f /opt/retro-armbian/rarm-boot-once.service /etc/systemd/system/rarm-boot-once.service
+ln -sf /etc/systemd/system/rarm-boot-once.service /etc/systemd/system/multi-user.target.wants/rarm-boot-once.service
 
 
 #################################################################
-# ROPI-RESOLUTION COMMAND
+# RARM-RESOLUTION COMMAND
 #################################################################
-chmod +x /opt/retro-opi/ropi-resolution.sh
-chown robot:robot /opt/retro-opi/ropi-resolution.sh
-ln -sf /opt/retro-opi/ropi-resolution.sh /usr/local/bin/ropi-resolution
+chmod +x /opt/retro-armbian/rarm-resolution.sh
+chown robot:robot /opt/retro-armbian/rarm-resolution.sh
+ln -sf /opt/retro-armbian/rarm-resolution.sh /usr/local/bin/rarm-resolution
 
 
 #################################################################
-# ROPI-CONNECT COMMAND
+# RARM-CONNECT COMMAND
 #################################################################
-chmod +x /opt/retro-opi/ropi-connect.sh
-chown robot:robot /opt/retro-opi/ropi-connect.sh
-ln -sf /opt/retro-opi/ropi-connect.sh /usr/local/bin/ropi-connect
+chmod +x /opt/retro-armbian/rarm-connect.sh
+chown robot:robot /opt/retro-armbian/rarm-connect.sh
+ln -sf /opt/retro-armbian/rarm-connect.sh /usr/local/bin/rarm-connect
 
 
 #################################################################
-# ROPI-PLAY COMMAND
+# RARM-PLAY COMMAND
 #################################################################
-chmod +x /opt/retro-opi/ropi-play.sh
-chown robot:robot /opt/retro-opi/ropi-play.sh
-ln -sf /opt/retro-opi/ropi-play.sh /usr/local/bin/ropi-play
+chmod +x /opt/retro-armbian/rarm-play.sh
+chown robot:robot /opt/retro-armbian/rarm-play.sh
+ln -sf /opt/retro-armbian/rarm-play.sh /usr/local/bin/rarm-play
 
 
 #################################################################
-# ROPI-RESET COMMAND
+# RARM-RESET COMMAND
 #################################################################
-chmod +x /opt/retro-opi/ropi-reset.sh
-chown robot:robot /opt/retro-opi/ropi-reset.sh
-ln -sf /opt/retro-opi/ropi-reset.sh /usr/local/bin/ropi-reset
+chmod +x /opt/retro-armbian/rarm-reset.sh
+chown robot:robot /opt/retro-armbian/rarm-reset.sh
+ln -sf /opt/retro-armbian/rarm-reset.sh /usr/local/bin/rarm-reset
 
 
 #################################################################
-# ROPI-PASSWORD COMMAND
+# RARM-PASSWORD COMMAND
 #################################################################
-chmod +x /opt/retro-opi/ropi-password.sh
-chown robot:robot /opt/retro-opi/ropi-password.sh
-ln -sf /opt/retro-opi/ropi-password.sh /usr/local/bin/ropi-password
+chmod +x /opt/retro-armbian/rarm-password.sh
+chown robot:robot /opt/retro-armbian/rarm-password.sh
+ln -sf /opt/retro-armbian/rarm-password.sh /usr/local/bin/rarm-password
 
 
 #################################################################
