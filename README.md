@@ -56,7 +56,7 @@
 #### Notes:
 - Initial boot takes longer depending on hardware.
 - TODO:
-    - Include rarm-* commands in Retro Pie menu.
+    - Include `rarm-*` commands in Retro Pie menu.
 
 # BUILD (OPTIONAL):
 
