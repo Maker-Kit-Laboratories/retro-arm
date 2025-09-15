@@ -65,7 +65,7 @@ cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
 clear -x
-echo -e "${GREEN}RETROPIE SETUP COMPLETE${NC}"
+echo -e "RETROPIE SETUP COMPLETE"
 
 
 #################################################################
