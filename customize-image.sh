@@ -32,18 +32,18 @@ systemctl disable smbd nmbd
 #################################################################
 # SYNC FILES
 #################################################################
-mkdir -p /opt/retro-armbian/
+mkdir -p /opt/retro-arm/
 rsync -av /tmp/overlay/ /
-chown -R robot:robot /opt/retro-armbian
+chown -R robot:robot /opt/retro-arm
 chown -R robot:robot /home/robot
-cp -f /opt/retro-armbian/watermark.png /usr/share/plymouth/themes/armbian/watermark.png
+cp -f /opt/retro-arm/watermark.png /usr/share/plymouth/themes/armbian/watermark.png
 
 
 #################################################################
 # ROBOT BOOT SCRIPT
 #################################################################
-chmod +x /opt/retro-armbian/rarm-boot-robot.sh
-chown robot:robot /opt/retro-armbian/rarm-boot-robot.sh
+chmod +x /opt/retro-arm/rarm-boot-robot.sh
+chown robot:robot /opt/retro-arm/rarm-boot-robot.sh
 
 
 #################################################################
@@ -51,7 +51,7 @@ chown robot:robot /opt/retro-armbian/rarm-boot-robot.sh
 #################################################################
 cat >>/home/robot/.profile <<"EOF"
 if [ $(tty) = "/dev/tty1" ]; then
-    /opt/retro-armbian/rarm-boot-robot.sh
+    /opt/retro-arm/rarm-boot-robot.sh
 fi
 EOF
 
@@ -94,16 +94,16 @@ set_retroarch_config "audio_driver" "alsa"
 #################################################################
 # RARM-RETROBREW COMMAND
 #################################################################
-chmod +x /opt/retro-armbian/rarm-retrobrew.sh
-chown robot:robot /opt/retro-armbian/rarm-retrobrew.sh
-ln -sf /opt/retro-armbian/rarm-retrobrew.sh /usr/local/bin/rarm-retrobrew
+chmod +x /opt/retro-arm/rarm-retrobrew.sh
+chown robot:robot /opt/retro-arm/rarm-retrobrew.sh
+ln -sf /opt/retro-arm/rarm-retrobrew.sh /usr/local/bin/rarm-retrobrew
 rarm-retrobrew
 
 
 #################################################################
 # STORE ROBOT USER DATA
 #################################################################
-rsync -a /home/robot/ /opt/retro-armbian/robot/
+rsync -a /home/robot/ /opt/retro-arm/robot/
 
 
 #################################################################
@@ -123,50 +123,50 @@ EOF
 #################################################################
 # INITIAL BOOT SCRIPT
 #################################################################
-chmod +x /opt/retro-armbian/rarm-boot-once.sh
-chown robot:robot /opt/retro-armbian/rarm-boot-once.sh
-cp -f /opt/retro-armbian/rarm-boot-once.service /etc/systemd/system/rarm-boot-once.service
+chmod +x /opt/retro-arm/rarm-boot-once.sh
+chown robot:robot /opt/retro-arm/rarm-boot-once.sh
+cp -f /opt/retro-arm/rarm-boot-once.service /etc/systemd/system/rarm-boot-once.service
 ln -sf /etc/systemd/system/rarm-boot-once.service /etc/systemd/system/multi-user.target.wants/rarm-boot-once.service
 
 
 #################################################################
 # RARM-RESOLUTION COMMAND
 #################################################################
-chmod +x /opt/retro-armbian/rarm-resolution.sh
-chown robot:robot /opt/retro-armbian/rarm-resolution.sh
-ln -sf /opt/retro-armbian/rarm-resolution.sh /usr/local/bin/rarm-resolution
+chmod +x /opt/retro-arm/rarm-resolution.sh
+chown robot:robot /opt/retro-arm/rarm-resolution.sh
+ln -sf /opt/retro-arm/rarm-resolution.sh /usr/local/bin/rarm-resolution
 
 
 #################################################################
 # RARM-CONNECT COMMAND
 #################################################################
-chmod +x /opt/retro-armbian/rarm-connect.sh
-chown robot:robot /opt/retro-armbian/rarm-connect.sh
-ln -sf /opt/retro-armbian/rarm-connect.sh /usr/local/bin/rarm-connect
+chmod +x /opt/retro-arm/rarm-connect.sh
+chown robot:robot /opt/retro-arm/rarm-connect.sh
+ln -sf /opt/retro-arm/rarm-connect.sh /usr/local/bin/rarm-connect
 
 
 #################################################################
 # RARM-PLAY COMMAND
 #################################################################
-chmod +x /opt/retro-armbian/rarm-play.sh
-chown robot:robot /opt/retro-armbian/rarm-play.sh
-ln -sf /opt/retro-armbian/rarm-play.sh /usr/local/bin/rarm-play
+chmod +x /opt/retro-arm/rarm-play.sh
+chown robot:robot /opt/retro-arm/rarm-play.sh
+ln -sf /opt/retro-arm/rarm-play.sh /usr/local/bin/rarm-play
 
 
 #################################################################
 # RARM-RESET COMMAND
 #################################################################
-chmod +x /opt/retro-armbian/rarm-reset.sh
-chown robot:robot /opt/retro-armbian/rarm-reset.sh
-ln -sf /opt/retro-armbian/rarm-reset.sh /usr/local/bin/rarm-reset
+chmod +x /opt/retro-arm/rarm-reset.sh
+chown robot:robot /opt/retro-arm/rarm-reset.sh
+ln -sf /opt/retro-arm/rarm-reset.sh /usr/local/bin/rarm-reset
 
 
 #################################################################
 # RARM-PASSWORD COMMAND
 #################################################################
-chmod +x /opt/retro-armbian/rarm-password.sh
-chown robot:robot /opt/retro-armbian/rarm-password.sh
-ln -sf /opt/retro-armbian/rarm-password.sh /usr/local/bin/rarm-password
+chmod +x /opt/retro-arm/rarm-password.sh
+chown robot:robot /opt/retro-arm/rarm-password.sh
+ln -sf /opt/retro-arm/rarm-password.sh /usr/local/bin/rarm-password
 
 
 #################################################################

@@ -1,9 +1,9 @@
 # RETRO-ARMBIAN CONSOLE
-![Retro Armbian Image](./documentation/retro-armbian-image-3.png)
+![Retro Arm Image](./documentation/retro-arm-image-3.png)
 
 ### DESCRIPTION:
 - Custom Armbian build script intregrating Retro Pie and optional retro-brew ROMs.
-- Version 0.2.1
+- Version 0.2.2
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
 - Tested SBCs:
@@ -15,9 +15,9 @@
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Orange Pi Zero 3 -> [retro-armbian-0.2.0-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz)
-    - Orange Pi Zero 2W -> [retro-armbian-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz)
-    - Orange Pi 3 LTS -> [retro-armbian-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepi3-lts.img.xz)
+    - Orange Pi Zero 3 -> [retro-arm-0.2.0-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero3.img.xz)
+    - Orange Pi Zero 2W -> [retro-arm-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepizero2w.img.xz)
+    - Orange Pi 3 LTS -> [retro-arm-0.2.0-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-opi-0.2.0-armbian-25.08-orangepi3-lts.img.xz)
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
@@ -32,7 +32,7 @@
 3. `INITIAL BOOT ONLY` - Network setup. `Esc` to cancel.
 4. Network check. 
 5. Enable file sharing if network check passes.
-    - server: `\\retro-armbian.local\roms`
+    - server: `\\retro-arm.local\roms`
     - user: `robot`
     - password: `<system password>`
 6. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 suggested depending on your SBC's capabilities.
@@ -40,7 +40,7 @@
 8. Retro Pie starts.
 #### Commands:
 - Key `F4` : Exit Retro Pie.
-- `rarm-play` :  Start Retro Pie.
+- `rarm-play` : Start Retro Pie.
 - `rarm-resolution` : Sets a custom video resolution on boot.
 - `rarm-connect` : Setup a network connection and file sharing.
 - `rarm-password` : Change system password.
@@ -50,9 +50,9 @@
 - user: `robot` / `root`
 - password: `<system password>`
 #### Hostname: 
-- `retro-armbian`
+- `retro-arm`
 #### SSH command: 
-- `ssh robot@retro-armbian.local`
+- `ssh robot@retro-arm.local`
 #### Notes:
 - Initial boot takes longer depending on hardware.
 - TODO:
@@ -65,9 +65,9 @@
 - Linux PC.
 
 ### BUILD INSTRUCTIONS:
-1. `git clone https://github.com/Maker-Kit-Laboratories/retro-armbian.git`
-2. `cd retro-armbian`
-3. `./create-retro-armbian-image.sh` Optional arguments: `BOARD=<configname>`
+1. `git clone https://github.com/Maker-Kit-Laboratories/retro-arm.git`
+2. `cd retro-arm`
+3. `./create-retro-arm-image.sh` Optional arguments: `BOARD=<configname>`
 4. Follow instructions and build with desired setup.
 
 

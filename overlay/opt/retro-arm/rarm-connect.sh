@@ -13,4 +13,4 @@ if ip route | grep -q default; then
     sleep 2
 fi
 echo "$RARM" | sudo -S false >/dev/null 2>&1
-touch /opt/retro-armbian/rarm-connect.check
+touch /opt/retro-arm/rarm-connect.check

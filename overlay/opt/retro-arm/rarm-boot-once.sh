@@ -1,12 +1,12 @@
 #!/bin/bash
-hostnamectl set-hostname retro-armbian
-echo "retro-armbian" >/etc/hostname
-sed -i 's/^\(127\.0\.1\.1\s*\).*/\1retro-armbian/' /etc/hosts
-chown -R robot:robot /opt/retro-armbian/
-chmod 755 /opt/retro-armbian/
+hostnamectl set-hostname retro-arm
+echo "retro-arm" >/etc/hostname
+sed -i 's/^\(127\.0\.1\.1\s*\).*/\1retro-arm/' /etc/hosts
+chown -R robot:robot /opt/retro-arm/
+chmod 755 /opt/retro-arm/
 mkdir -p /home/robot
 chmod 755 /home/robot
-rsync -a /opt/retro-armbian/robot/ /home/robot/
+rsync -a /opt/retro-arm/robot/ /home/robot/
 chown -R robot:robot /home/robot
 cat >>/etc/samba/smb.conf <<"EOF"
 [roms]

@@ -3,8 +3,8 @@ RARM=$(pass show rarm/stuff) > /dev/null 2>&1
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-if [ -f /opt/retro-armbian/rarm-password.check ]; then
-    rm -f /opt/retro-armbian/rarm-password.check
+if [ -f /opt/retro-arm/rarm-password.check ]; then
+    rm -f /opt/retro-arm/rarm-password.check
 fi
 change_password() {
     local user="$1"
@@ -26,7 +26,7 @@ while true; do
         sudo -u robot -H pass init "$ROBOT_GPG" >/dev/null 2>&1
         echo "$pass1" | sudo -u robot -H pass insert -e -f rarm/stuff >/dev/null 2>&1
         (echo "$pass1"; echo "$pass1") | smbpasswd -s >/dev/null 2>&1
-        touch /opt/retro-armbian/rarm-password.check
+        touch /opt/retro-arm/rarm-password.check
         clear
         echo -e "${GREEN}Password updated.${NC}"
         sleep 1

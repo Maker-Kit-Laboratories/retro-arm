@@ -3,7 +3,7 @@ Description=RETRO-ARMBIAN - Initial Boot Script
 
 [Service]
 Type=oneshot
-ExecStart=/opt/retro-armbian/rarm-boot-once.sh
+ExecStart=/opt/retro-arm/rarm-boot-once.sh
 ExecStartPost=/bin/systemctl disable rarm-boot-once.service
 RemainAfterExit=no
 

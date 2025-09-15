@@ -15,7 +15,7 @@ echo -e "${BLUE}ROMs have been removed.${NC}"
 ARMBIAN_ENV="/boot/armbianEnv.txt"
 sed -i '/^extraargs=/d' "$ARMBIAN_ENV"
 echo -e "${BLUE}Removed boot resolution.${NC}"
-RARM_DIR="/opt/retro-armbian"
+RARM_DIR="/opt/retro-arm"
 find "$RARM_DIR" -type f -name "*.check" -print -exec rm -fv {} +
 echo -e "${BLUE}Removed .check files.${NC}"
 echo
