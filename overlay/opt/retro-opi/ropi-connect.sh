@@ -1,4 +1,6 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+NC='\033[0m'
 ROPI=$(pass show ropi/stuff) > /dev/null 2>&1
 sleep 1
 echo "$ROPI" | sudo -S true >/dev/null 2>&1

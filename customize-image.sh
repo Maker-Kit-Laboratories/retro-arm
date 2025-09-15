@@ -113,6 +113,9 @@ cat >/etc/systemd/system/getty@tty1.service.d/override.conf <<"EOF"
 [Service]
 ExecStart=
 ExecStart=/sbin/agetty --autologin robot --noclear %I $TERM
+
+[Unit]
+After=ropi-boot-once.service
 EOF
 
 

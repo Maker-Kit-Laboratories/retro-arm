@@ -8,6 +8,12 @@ mkdir -p /home/robot
 chmod 755 /home/robot
 rsync -a /opt/retro-opi/robot/ /home/robot/
 chown -R robot:robot /home/robot
+cat >>/etc/samba/smb.conf <<"EOF"
+[roms]
+    path = /home/robot/RetroPie/roms
+    read only = No
+    valid users = robot
+EOF
 GNUPGHOME="/home/robot/.gnupg"
 mkdir -p ${GNUPGHOME}
 chown -R robot:robot ${GNUPGHOME}
@@ -17,15 +23,8 @@ ROBOT_GPG=$(sudo -u robot -H gpg --list-secret-keys --with-colons | awk -F: '/^f
 sudo -u robot -H pass init ${ROBOT_GPG}
 echo "retroopi" | sudo -u robot -H pass insert -e -f ropi/stuff
 (echo "retroopi"; echo "retroopi") | smbpasswd -s -a robot
-cat >>/etc/samba/smb.conf <<"EOF"
-[roms]
-    path = /home/robot/RetroPie/roms
-    read only = No
-    valid users = robot
-EOF
 systemctl enable avahi-daemon
 sed -i '/^bootlogo=/d' "/boot/armbianEnv.txt" || true
 echo "bootlogo=true" >> "/boot/armbianEnv.txt"
 update-initramfs -u
-echo -e "${GREEN}RETRO-OPI BOOT ONCE COMPLETE${NC}"
 rm -- "$0"
