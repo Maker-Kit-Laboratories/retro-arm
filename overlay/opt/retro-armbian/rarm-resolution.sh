@@ -28,7 +28,7 @@ select mode in "${MODES[@]}"; do
     echo "extraargs=video=${out_name}:${res}" | sudo tee -a /boot/armbianEnv.txt >/dev/null
     echo -e "${BLUE}Resolution: ${NC}${res}."
     echo -e "${RED}Rebooting system now (CTRL-C to cancel).${NC}"
-    touch /opt/retro-armbian/ropi-resolution.check
+    touch /opt/retro-armbian/rarm-resolution.check
     sleep 1
     echo -e "${RED}5"
     sleep 1
