@@ -11,10 +11,8 @@ echo -e "${GREEN} \ \  __<  \ \  __\  \/_/\ \/ \ \  __<  \ \ \/\ \  " "${RED}" '
 echo -e "${GREEN}  \ \_\ \_\ \ \_____\   \ \_\  \ \_\ \_\ \ \_____\ " "${RED}" '  \ \_\ \_\ \ \_\ \_\ \ \_\ \ \_\ '
 echo -e "${GREEN}   \/_/ /_/  \/_____/    \/_/   \/_/ /_/  \/_____/ " "${RED}" '   \/_/\/_/  \/_/ /_/  \/_/  \/_/ '
 echo -e "${NC}"
-echo
-echo -e "WELCOME TO ${GREEN}RETRO ${RED}ARM{NC}"
-echo "========================================"
 sleep 2
+echo
 echo
 echo
 if [ ! -f /opt/retro-arm/rarm-password.check ]; then

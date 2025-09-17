@@ -53,7 +53,7 @@ echo -e "${GREEN} \ \  __<  \ \  __\  \/_/\ \/ \ \  __<  \ \ \/\ \  " "${RED}" '
 echo -e "${GREEN}  \ \_\ \_\ \ \_____\   \ \_\  \ \_\ \_\ \ \_____\ " "${RED}" '  \ \_\ \_\ \ \_\ \_\ \ \_\ \ \_\ '
 echo -e "${GREEN}   \/_/ /_/  \/_____/    \/_/   \/_/ /_/  \/_____/ " "${RED}" '   \/_/\/_/  \/_/ /_/  \/_/  \/_/ '
 echo
-echo -e "${BLUE}MAKER KIT LABORATORIES${NC} - ${GREEN}RETRO${NC} ${RED}ARM${NC} - IMAGE CREATOR"
+echo -e "${BLUE}MAKER KIT LABORATORIES${NC} - ${GREEN}RETRO ${RED}ARM${NC} - IMAGE CREATOR"
 echo -e "${NC}========================================================="
 echo -e "${GREEN}RETRO ${RED}ARM: ${NC}${VERSION}"
 echo -e "${RED}ARMBIAN:       ${NC}${ARMBIAN_VERSION}"
