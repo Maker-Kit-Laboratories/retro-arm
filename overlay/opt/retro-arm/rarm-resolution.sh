@@ -6,6 +6,7 @@ NC='\033[0m'
 for device in /sys/class/drm/*HDMI*; do
     if [ -d "$device" ] && [ "$(cat "$device/status")" = "connected" ]; then
         OUT="$device"
+        echo 1 | sudo tee "$OUT/status" >/dev/null 2>&1
         break
     fi
 done
@@ -14,7 +15,11 @@ if [ -z "$OUT" ]; then
     exit 1
 fi
 echo -e "${BLUE}\033[1mSelect HDMI Resolution (720P Recommended):\033[0m${NC}"
-mapfile -t MODES < <(grep -v 'i' "$OUT/modes" | sort -rV | awk '!seen[$0]++')
+mapfile -t MODES < <(
+    grep -v '[0-9]i' "$OUT/modes" |
+    sort -rV |                     
+    awk '!seen[$0]++'              
+)
 PS3=" "
 select mode in "${MODES[@]}"; do
     [ -n "$mode" ] || { echo -e "${RED}Invalid${NC}"; res="1280x720"; continue; }
