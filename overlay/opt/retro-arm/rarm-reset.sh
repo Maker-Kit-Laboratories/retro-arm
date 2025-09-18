@@ -6,7 +6,7 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 ROMS_DIR="/home/robot/RetroPie/roms"
-echo -e "${RED}Starting RETRO-OPI reset process..."
+echo -e "${RED}Starting RETRO-ARM reset process..."
 echo "5 seconds to cancel (CTRL-C)..."
 sleep 5
 echo -e "${NC}"
