@@ -1,6 +1,6 @@
 #!/bin/bash
 #################################################################
-# RETRO-ARMBIAN IMAGE CREATOR
+# RETRO-ARM IMAGE CREATOR
 # MAKER KIT LABORATORIES // 2025 // https://makerkitlab.xyz
 # NOTES:
 # - This script automates the process of creating a RETRO-ARMBIAN image with open source games optionally pre-installed.
