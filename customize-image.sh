@@ -25,7 +25,7 @@ chown -R robot:robot /home/robot
 # DEPENDENCIES
 #################################################################
 apt-get update
-apt-get install -y samba avahi-daemon pass gpg
+apt-get install -y samba avahi-daemon pass gpg edid-decode
 systemctl disable smbd nmbd
 
 
