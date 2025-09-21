@@ -76,5 +76,5 @@
 
 
 # SUPPORT:
-- If you'd like to support this project, consider buying a `RETRO-ARMBIAN` kit @ [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
+- [Maker Kit Laboratories - Printables](https://www.printables.com/@MakerKitLab_2578894)
 - Comfirm supported boards and submit any issues you come across. Thanks!
