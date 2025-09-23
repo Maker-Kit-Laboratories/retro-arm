@@ -33,4 +33,7 @@ echo
 if [ ! -f /opt/retro-arm/rarm-resolution.check ]; then
     rarm-resolution
 fi
+if [ ! -f /opt/retro-arm/rarm-audio.check ]; then
+    rarm-audio
+fi
 rarm-play

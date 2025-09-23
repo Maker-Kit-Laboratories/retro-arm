@@ -19,7 +19,7 @@ if [ -z "$OUT" ]; then
     exit 1
 fi
 
-DECODED_EDID=$(edid-decode < "$OUT/edid" 2>&1)
+DECODED_EDID=$(sudo edid-decode < "$OUT/edid" 2>&1)
 
 declare -A resolution_refresh_rates
 

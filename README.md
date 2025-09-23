@@ -3,7 +3,7 @@
 
 ### DESCRIPTION:
 - Custom Armbian build script intregrating Retro Pie and optional retro-brew ROMs.
-- Version 0.2.4
+- Version 0.2.5
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
 - Tested SBCs:
@@ -15,7 +15,9 @@
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Orange Pi Zero 3 -> [retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz)
+    - Orange Pi Zero 3:
+        - With ROMs: [retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz)
+        - Without ROMs: 
     - More coming...
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 

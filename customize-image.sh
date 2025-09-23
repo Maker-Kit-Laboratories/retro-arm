@@ -168,6 +168,12 @@ chmod +x /opt/retro-arm/rarm-password.sh
 chown robot:robot /opt/retro-arm/rarm-password.sh
 ln -sf /opt/retro-arm/rarm-password.sh /usr/local/bin/rarm-password
 
+#################################################################
+# RARM-AUDIO COMMAND
+#################################################################
+chmod +x /opt/retro-arm/rarm-audio.sh
+chown robot:robot /opt/retro-arm/rarm-audio.sh
+ln -sf /opt/retro-arm/rarm-audio.sh /usr/local/bin/rarm-audio
 
 #################################################################
 # KILL PROCESSES
