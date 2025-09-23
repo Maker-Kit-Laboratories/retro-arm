@@ -75,11 +75,11 @@ for i in "${!unique_refresh_rates[@]}"; do
     echo "$((i+1)). ${unique_refresh_rates[i]}"
 done
 echo ""
-
 read -p "Select a refresh rate: " refresh_choice
 selected_refresh="${unique_refresh_rates[$((refresh_choice-1))]}"
-
 refresh_rate=$(echo "$selected_refresh" | sed 's/ Hz//' | sed 's/\..*//')
+
+echo -e "${RARM}" | sudo -S true >/dev/null 2>&1
 
 sudo sed -i '/^disp_mode=/d' /boot/armbianEnv.txt
 echo "disp_mode=${selected_resolution}p${refresh_rate}" | sudo tee -a /boot/armbianEnv.txt >/dev/null

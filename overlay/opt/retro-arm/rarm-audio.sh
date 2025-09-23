@@ -7,7 +7,7 @@ NC='\033[0m'
 BOLD='\033[1m'
 echo "$RARM" | sudo -S true >/dev/null 2>&1
 echo -e "${BLUE}${BOLD}Configuring HDMI Audio...${NC}"
-hdmi_card=$(aplay -l | awk -F: '/HDMI/ {print $1}' | awk '{print $2}' | head -n1)
+hdmi_card=$(aplay -l | awk -F':' '/[Hh][Dd][Mm][Ii]/ {print $1}' | awk '{print $2}' | head -n1)
 if [ -z "$hdmi_card" ]; then
     echo -e "${RED}HDMI audio device not found. Audio issues may occur.${NC}"
     exit 1
