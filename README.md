@@ -6,10 +6,10 @@
 - Version 0.2.5
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
-- Tested SBCs:
+- SBCs:
     - Orange Pi Zero 3
-    - Orange Pi Zero 2w
-    - Orange Pi 3 LTS
+    - Radxa Rock 2F
+    - More images coming...
 - 8GB+ Micro SD card.
 - `INITIAL BOOT ONLY` - Keyboard.
 
@@ -17,8 +17,8 @@
 1. Download pre-built image here:
     - Orange Pi Zero 3:
         - With ROMs: [retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz)
-        - Without ROMs: 
-    - More coming...
+    - Radxa Rock 2F:
+        - With ROMs: [retro-arm-0.2.5-armbian-25.08-rock-2f.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.5-armbian-25.08-rock-2f.img.xz)
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
@@ -36,9 +36,10 @@
     - server: `\\retro-arm.local\roms`
     - user: `robot`
     - password: `<system password>`
-6. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 suggested depending on your SBC's capabilities.
-7. `INITIAL BOOT ONLY` - Reboot.
-8. Retro Pie starts.
+6. `INITIAL BOOT ONLY` - Audio setup.
+7. `INITIAL BOOT ONLY` - Resolution setup: 1280x720 suggested depending on your SBC's capabilities.
+8. `INITIAL BOOT ONLY` - Reboot.
+9. Retro Pie starts.
 #### Commands:
 - Key `F4` : Exit Retro Pie.
 - `rarm-play` : Start Retro Pie.
