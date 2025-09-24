@@ -16,7 +16,7 @@
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
     - Orange Pi Zero 3:
-        - With ROMs: [retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.3-armbian-25.08-orangepizero3.img.xz)
+        - With ROMs: [retro-arm-0.2.5-armbian-25.08-orangepizero3.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.5-armbian-25.08-orangepizero3.img.xz)
     - Radxa Rock 2F:
         - With ROMs: [retro-arm-0.2.5-armbian-25.08-rock-2f.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.5-armbian-25.08-rock-2f.img.xz)
 2. Write the image to an SD card using:
