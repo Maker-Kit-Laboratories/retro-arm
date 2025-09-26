@@ -11,6 +11,7 @@
     - Orange Pi Zero 2W
     - Orange Pi 3 LTS
     - Radxa Rock 2F
+    - Radxa Rock 3C
 - 8GB+ Micro SD card.
 - `INITIAL BOOT ONLY` - Keyboard.
 
@@ -20,6 +21,7 @@
     - Orange Pi Zero 2W: [retro-arm-0.2.5-armbian-25.08-orangepizero2w.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.5-armbian-25.08-orangepizero2w.img.xz)
     - Orange Pi 3 LTS: [retro-arm-0.2.5-armbian-25.08-orangepi3-lts.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.5-armbian-25.08-orangepi3-lts.img.xz)
     - Radxa Rock 2F: [retro-arm-0.2.5-armbian-25.08-rock-2f.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.5-armbian-25.08-rock-2f.img.xz)
+    - Radxa Rock 3C: [retro-arm-0.2.5-armbian-25.08-rock-3c.img.xz](https://makerkitlab.xyz/data/kit/retroarmretro-arm-0.2.5-armbian-25.08-rock-3c.img.xz)
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
