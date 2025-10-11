@@ -17,6 +17,8 @@ echo
 echo
 if [ ! -f /opt/retro-arm/rarm-password.check ]; then
     rarm-password
+    RARM=$(pass show rarm/stuff) > /dev/null 2>&1
+    echo "$RARM" | sudo -S true >/dev/null 2>&1
 fi
 if ip route | grep -q default; then
     echo -e "${GREEN}Network connection detected.${NC}"

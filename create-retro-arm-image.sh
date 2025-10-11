@@ -34,7 +34,7 @@ sudo -v
 #################################################################
 NAME="retro-arm"
 ARMBIAN_VERSION="25.08"
-VERSION="0.2.5"
+VERSION="0.2.6"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"

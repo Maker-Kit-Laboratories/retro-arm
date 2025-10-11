@@ -1,5 +1,5 @@
 [Unit]
-Description=RETRO-ARMBIAN - Initial Boot Script
+Description=RETRO-ARM - Initial Boot Script
 
 [Service]
 Type=oneshot
