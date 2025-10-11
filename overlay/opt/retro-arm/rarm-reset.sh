@@ -19,7 +19,7 @@ RARM_DIR="/opt/retro-arm"
 find "$RARM_DIR" -type f -name "*.check" -print -exec rm -fv {} +
 echo -e "${BLUE}Removed .check files.${NC}"
 echo
-echo -e "${GREEN}RETRO-OPI reset process complete.${NC}"
+echo -e "${GREEN}RETRO-ARM reset process complete.${NC}"
 echo -e "${RED}Rebooting system...${NC}"
 sleep 1
 sudo reboot
