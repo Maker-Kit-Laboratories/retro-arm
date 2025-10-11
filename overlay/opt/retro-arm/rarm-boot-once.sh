@@ -22,7 +22,6 @@ sudo -u robot -H gpg --batch --passphrase '' --quick-gen-key "robot <robot@local
 ROBOT_GPG=$(sudo -u robot -H gpg --list-secret-keys --with-colons | awk -F: '/^fpr:/ {print $10; exit}')
 sudo -u robot -H pass init ${ROBOT_GPG}
 echo "retroarm" | sudo -u robot -H pass insert -e -f rarm/stuff
-(echo "retroarm"; echo "retroarm") | smbpasswd -s -a robot
 systemctl enable avahi-daemon
 sed -i '/^bootlogo=/d' "/boot/armbianEnv.txt" || true
 echo "bootlogo=true" >> "/boot/armbianEnv.txt"

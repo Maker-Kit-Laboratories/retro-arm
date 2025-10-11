@@ -25,7 +25,7 @@ while true; do
         ROBOT_GPG=$(sudo -u robot -H gpg --list-secret-keys --with-colons | awk -F: '/^fpr:/ {print $10; exit}') >/dev/null 2>&1
         sudo -u robot -H pass init "$ROBOT_GPG" >/dev/null 2>&1
         echo "$pass1" | sudo -u robot -H pass insert -e -f rarm/stuff >/dev/null 2>&1
-        (echo "$pass1"; echo "$pass1") | smbpasswd -s >/dev/null 2>&1
+        (echo "retroarm"; echo "retroarm") | smbpasswd -s -a robot >/dev/null 2>&1
         touch /opt/retro-arm/rarm-password.check
         clear
         echo -e "${GREEN}Password updated.${NC}"
