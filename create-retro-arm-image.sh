@@ -49,6 +49,7 @@ NC='\033[0m'
 if [ ! -d "armbian" ]; then
     echo -e "${BLUE}Initializing Armbian submodule...${NC}"
     git submodule update --init --recursive
+    git pull --recurse-submodules
 else
     echo -e "${BLUE}Updating Armbian submodule...${NC}"
     git submodule update --remote --recursive armbian
