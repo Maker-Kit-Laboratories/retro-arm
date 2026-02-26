@@ -1,4 +1,3 @@
 [submodule "armbian"]
-	path = external/armbian
+	path = armbian
 	url = https://github.com/armbian/build.git
-	branch = v25.08
