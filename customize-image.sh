@@ -3,12 +3,6 @@ set -e
 
 
 #################################################################
-# STORE PROCESSES
-#################################################################
-captured_pids=$(ls /proc | grep '^[0-9]\+$')
-
-
-#################################################################
 # USERS
 #################################################################
 echo "root:retroarm" | chpasswd
@@ -78,17 +72,21 @@ echo -e "======================"
 #################################################################
 # RETROARCH SETTINGS
 #################################################################
-set_retroarch_config() {
-    local key="$1"
-    local value="$2"
-    local config_file="/opt/retropie/configs/all/retroarch.cfg"
-    if grep -Eq "^\s*#?\s*${key}\s*=" "$config_file"; then
-        sed -i "s|^\s*#\?\s*${key}\s*=.*|${key} = \"${value}\"|" "$config_file"
-    else
-        echo "${key} = \"${value}\"" >> "$config_file"
-    fi
-}
-set_retroarch_config "audio_driver" "alsa"
+if [ ! -f "/opt/retropie/configs/all/retroarch.cfg" ]; then
+    echo "RetroPie is not installed. Skipping RetroArch configuration."
+else
+    set_retroarch_config() {
+        local key="$1"
+        local value="$2"
+        local config_file="/opt/retropie/configs/all/retroarch.cfg"
+        if grep -Eq "^\s*#?\s*${key}\s*=" "$config_file"; then
+            sed -i "s|^\s*#\?\s*${key}\s*=.*|${key} = \"${value}\"|" "$config_file"
+        else
+            echo "${key} = \"${value}\"" >> "$config_file"
+        fi
+    }
+    set_retroarch_config "audio_driver" "alsa"
+fi
 
 
 #################################################################
@@ -175,15 +173,5 @@ chmod +x /opt/retro-arm/rarm-audio.sh
 chown robot:robot /opt/retro-arm/rarm-audio.sh
 ln -sf /opt/retro-arm/rarm-audio.sh /usr/local/bin/rarm-audio
 
-#################################################################
-# KILL PROCESSES
-#################################################################
-current_pids=$(ls /proc | grep '^[0-9]\+$')
-for pid in $current_pids; do
-    if ! grep -q "^$pid$" <<< "$captured_pids"; then
-        if [ "$pid" != "1" ]; then
-            kill -9 "$pid" 2>/dev/null || true
-        fi
-    fi
-done
+
 exit 0
