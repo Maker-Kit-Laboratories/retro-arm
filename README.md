@@ -63,7 +63,7 @@
 
 ### BUILD REQUIREMENTS:
 - Armbian supported SBC.
-- Linux PC.
+- Linux PC w/ docker.
 
 ### BUILD INSTRUCTIONS:
 1. `git clone https://github.com/Maker-Kit-Laboratories/retro-arm.git`

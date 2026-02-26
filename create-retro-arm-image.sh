@@ -70,7 +70,7 @@ echo
 echo -e "${BLUE}MAKER KIT LABORATORIES${NC} - ${GREEN}RETRO ${RED}ARM${NC} - IMAGE CREATOR"
 echo -e "${NC}========================================================="
 echo -e "${GREEN}RETRO ${RED}ARM: ${NC}${VERSION}"
-echo -e "${RED}ARMBIAN:           ${NC}${ARMBIAN_VERSION}"
+echo -e "${RED}ARMBIAN:   ${NC}${ARMBIAN_VERSION}"
 sleep 1
 echo
 
