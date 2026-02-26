@@ -2,33 +2,36 @@
 GREEN='\033[38;5;70m'
 RED='\033[38;5;203m'
 NC='\033[0m'
+system_list=("nes" "snes" "mastersystem" "megadrive" "gba" "gbc")
+system_shorthand_list=("nes" "snes" "sms" "md" "gba" "gbc")
 download_roms_for_system() {
     local system="$1"
     local shorthand="$2"
-    mkdir -p "/opt/roms/$system"
-    cd "/opt/roms/$system"
-    wget --no-check-certificate -q -O master.zip "https://codeload.github.com/retrobrews/${shorthand}-games/zip/master"
-    unzip master.zip
-    mv -f -v "${shorthand}-games-master"/* "/home/robot/RetroPie/roms/$system"
-    cd ..
-    rm -rf "/opt/roms/$system"
+    mkdir -p "/home/robot/RetroPie/roms/$system"
+    cd "/home/robot/RetroPie/roms/$system"
+    wget --no-check-certificate -q -O master.zip "https://codeload.github.com/retrobrews/${shorthand}-games/zip/master" 2>/dev/null || true
+    if [ -f master.zip ]; then
+        unzip -q master.zip 2>/dev/null || true
+        mv -f "${shorthand}-games-master"/* /home/robot/RetroPie/roms/$system 2>/dev/null || true
+        rm -f master.zip
+    fi
+    echo -e "${GREEN}ROMs installed for ${system}${NC}"
 }
-download_and_install_roms() {
-    download_roms_for_system "nes" "nes"
-    download_roms_for_system "snes" "snes"
-    download_roms_for_system "mastersystem" "sms"
-    download_roms_for_system "megadrive" "md"
-    download_roms_for_system "gba" "gba"
-    download_roms_for_system "gbc" "gbc"
+create_empty_folders() {
+    for system in "${system_list[@]}"; do
+        mkdir -p "/home/robot/RetroPie/roms/$system"
+        echo -e "${GREEN}Empty folder created for ${system}${NC}"
+    done
 }
-clear -x
-echo
 echo -e "${GREEN}RETROBREW ROM INSTALLER:${NC}"
 echo -e "${GREEN}=========================${NC}"
-echo -e "Select [y/N]:"
-read -p "" roms
-if [[ ! "$roms" =~ ^[Yy]$ ]]; then
-    echo -e "${RED}ROMs Skipped.${NC}"
+read -p "Select [y/N]: " install_roms
+if [[ "$install_roms" =~ ^[Yy]$ ]]; then
+    for i in "${!system_list[@]}"; do
+        system="${system_list[$i]}"
+        shorthand="${system_shorthand_list[$i]}"
+        download_roms_for_system "$system" "$shorthand"
+    done
 else
-    download_and_install_roms
+    create_empty_folders
 fi
