@@ -17,7 +17,7 @@
 
 ### PRE-BUILT IMAGE INSTRUCTIONS:
 1. Download pre-built image here:
-    - Radxa Rock 2F: [retro-arm-0.2.7-armbian-25.08-rock-2f.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.7-armbian-25.08-rock-2f.img.xz)
+    - Radxa Rock 2F: [retro-arm-0.2.7-armbian-25.8.1-rock-2f.img.xz](https://makerkitlab.xyz/data/kit/retroarm/retro-arm-0.2.7-armbian-25.8.1-rock-2f.img.xz)
 2. Write the image to an SD card using:
     - [balenaEtcher](https://www.balena.io/etcher/) 
     - [Raspberry Pi Imager](https://www.raspberrypi.com/software/)

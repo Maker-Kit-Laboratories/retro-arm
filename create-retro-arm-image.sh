@@ -33,7 +33,6 @@ sudo -v
 # DEFAULTS
 #################################################################
 NAME="retro-arm"
-ARMBIAN_VERSION="25.08"
 VERSION="0.2.7"
 DISTRO="ubuntu"
 RELEASE="noble"
@@ -42,6 +41,21 @@ GREEN='\033[38;5;70m'
 BLUE='\033[38;5;39m'
 RED='\033[38;5;203m'
 NC='\033[0m'
+
+
+#################################################################
+# CLONE ARMBIAN SUB-MODULE
+#################################################################
+if [ ! -d "armbian" ]; then
+    echo -e "${BLUE}Initializing Armbian submodule...${NC}"
+    git submodule update --init --recursive
+else
+    echo -e "${BLUE}Updating Armbian submodule...${NC}"
+    git submodule update --remote --recursive armbian
+fi
+echo -e "${GREEN}Armbian submodule ready.${NC}"
+
+ARMBIAN_VERSION=$(cat armbian/VERSION | tr -d '\n')
 
 
 #################################################################
@@ -56,23 +70,9 @@ echo
 echo -e "${BLUE}MAKER KIT LABORATORIES${NC} - ${GREEN}RETRO ${RED}ARM${NC} - IMAGE CREATOR"
 echo -e "${NC}========================================================="
 echo -e "${GREEN}RETRO ${RED}ARM: ${NC}${VERSION}"
-echo -e "${RED}ARMBIAN:       ${NC}${ARMBIAN_VERSION}"
+echo -e "${RED}ARMBIAN:           ${NC}${ARMBIAN_VERSION}"
 sleep 1
 echo
-
-
-#################################################################
-# CLONE ARMBIAN SUB-MODULE
-#################################################################
-if [ ! -d "armbian" ]; then
-    echo -e "${BLUE}Initializing Armbian submodule...${NC}"
-    git submodule update --init --recursive
-else
-    echo -e "${BLUE}Updating Armbian submodule...${NC}"
-    git submodule update --remote --recursive armbian
-fi
-echo -e "${GREEN}Armbian submodule ready.${NC}"
-sleep 1
 
 
 #################################################################
@@ -116,7 +116,6 @@ cp customize-image.sh armbian/userpatches/
 sudo chmod +x armbian/userpatches/customize-image.sh
 rm -rf armbian/userpatches/overlay
 rsync -av overlay/ armbian/userpatches/overlay/
-
 
 
 #################################################################
