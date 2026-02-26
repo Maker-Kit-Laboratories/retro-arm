@@ -46,16 +46,17 @@ NC='\033[0m'
 #################################################################
 # CLONE ARMBIAN SUB-MODULE
 #################################################################
-if [ ! -d "external/armbian" ]; then
+if [ ! -d "armbian" ]; then
     echo -e "${BLUE}Initializing Armbian submodule...${NC}"
     git submodule update --init --recursive
+    git submodule update --remote --recursive armbian
 else
     echo -e "${BLUE}Updating Armbian submodule...${NC}"
-    git submodule update --remote --recursive external/armbian
+    git submodule update --remote --recursive armbian
 fi
 echo -e "${GREEN}Armbian submodule ready.${NC}"
 
-ARMBIAN_VERSION=$(cat external/armbian/VERSION | tr -d '\n')
+ARMBIAN_VERSION=$(cat armbian/VERSION | tr -d '\n')
 
 
 #################################################################
@@ -86,7 +87,7 @@ if [ -z "$BOARD" ]; then
     sleep 2
     boards=()
     i=1
-    for file in external/armbian/config/boards/*.csc; do
+    for file in armbian/config/boards/*.csc; do
         [ -e "$file" ] || continue
         board=$(basename "$file" .csc)
         echo "$i) $board"
@@ -111,17 +112,17 @@ fi
 #################################################################
 # COPY CONFIG FILES
 #################################################################
-mkdir -p external/armbian/userpatches
-cp customize-image.sh external/armbian/userpatches/
-sudo chmod +x external/armbian/userpatches/customize-image.sh
-rm -rf external/armbian/userpatches/overlay
-rsync -av overlay/ external/armbian/userpatches/overlay/
+mkdir -p armbian/userpatches
+cp customize-image.sh armbian/userpatches/
+sudo chmod +x armbian/userpatches/customize-image.sh
+rm -rf armbian/userpatches/overlay
+rsync -av overlay/ armbian/userpatches/overlay/
 
 
 #################################################################
 # BUILD
 #################################################################
-if ! external/armbian/compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
+if ! armbian/compile.sh BOARD="${BOARD}" DISTRO="${DISTRO}" RELEASE="${RELEASE}" ARCH="${ARCH}" INSTALL_HEADERS="yes"; then
     echo
     echo -e "${RED}IMAGE BUILD FAILED${NC}"
     exit 1
@@ -137,7 +138,7 @@ fi
 #################################################################
 echo
 echo "COMPRESSING IMAGE..."
-IMAGE_FILE=$(ls -t external/armbian/output/images/*.img | head -n 1)
+IMAGE_FILE=$(ls -t armbian/output/images/*.img | head -n 1)
 COMPRESSED_IMAGE_FILE="${NAME}-${VERSION}-armbian-${ARMBIAN_VERSION}-${BOARD}.img.xz"
 if ! sudo xz -T0 -z -v -9 -k -f "$IMAGE_FILE"; then
     echo -e "${RED}IMAGE COMPRESSION FAILED${NC}"
