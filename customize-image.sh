@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+#################################################################
+# STORE PROCESSES
+#################################################################
+captured_pids=$(ls /proc | grep '^[0-9]\+$')
 
 #################################################################
 # USERS
@@ -59,8 +63,6 @@ cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
 clear -x
-echo -e "RETROPIE SETUP COMPLETE"
-echo -e "======================"
 
 
 #################################################################
@@ -166,12 +168,26 @@ chmod +x /opt/retro-arm/rarm-password.sh
 chown robot:robot /opt/retro-arm/rarm-password.sh
 ln -sf /opt/retro-arm/rarm-password.sh /usr/local/bin/rarm-password
 
+
 #################################################################
 # RARM-AUDIO COMMAND
 #################################################################
 chmod +x /opt/retro-arm/rarm-audio.sh
 chown robot:robot /opt/retro-arm/rarm-audio.sh
 ln -sf /opt/retro-arm/rarm-audio.sh /usr/local/bin/rarm-audio
+
+
+#################################################################
+# KILL PROCESSES
+#################################################################
+current_pids=$(ls /proc | grep '^[0-9]\+$')
+for pid in $current_pids; do
+    if ! grep -q "^$pid$" <<< "$captured_pids"; then
+        if [ "$pid" != "1" ]; then
+            kill -9 "$pid" 2>/dev/null || true
+        fi
+    fi
+done
 
 
 exit 0

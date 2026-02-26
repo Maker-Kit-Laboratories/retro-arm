@@ -25,6 +25,7 @@ create_empty_folders() {
 }
 echo -e "${GREEN}RETROBREW ROM INSTALLER:${NC}"
 echo -e "${GREEN}=========================${NC}"
+echo
 read -p "Select [y/N]: " install_roms
 if [[ "$install_roms" =~ ^[Yy]$ ]]; then
     for i in "${!system_list[@]}"; do
