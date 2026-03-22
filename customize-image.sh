@@ -62,6 +62,7 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd RetroPie-Setup
 chmod +x retropie_setup.sh
 ./retropie_setup.sh
+echo
 clear -x
 
 
@@ -77,6 +78,7 @@ clear -x
 if [ ! -f "/opt/retropie/configs/all/retroarch.cfg" ]; then
     echo "RetroPie is not installed. Skipping RetroArch configuration."
 else
+    sed -i 's|/root|~|g' /etc/emulationstation/es_systems.cfg
     set_retroarch_config() {
         local key="$1"
         local value="$2"
