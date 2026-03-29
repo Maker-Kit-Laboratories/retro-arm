@@ -33,7 +33,7 @@ sudo -v
 # DEFAULTS
 #################################################################
 NAME="retro-arm"
-VERSION="0.2.8"
+VERSION="0.2.9"
 DISTRO="ubuntu"
 RELEASE="noble"
 ARCH="arm64"

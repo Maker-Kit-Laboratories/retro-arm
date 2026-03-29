@@ -3,7 +3,7 @@
 
 ### DESCRIPTION:
 - Custom Armbian build script intregrating Retro Pie and optional retro-brew ROMs.
-- Version 0.2.8
+- Version 0.2.9
 
 ### PRE-BUILT IMAGE REQUIREMENTS:
 - SBCs:

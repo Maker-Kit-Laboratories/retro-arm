@@ -94,15 +94,6 @@ fi
 
 
 #################################################################
-# RARM-RETROBREW COMMAND
-#################################################################
-chmod +x /opt/retro-arm/rarm-retrobrew.sh
-chown robot:robot /opt/retro-arm/rarm-retrobrew.sh
-ln -sf /opt/retro-arm/rarm-retrobrew.sh /usr/local/bin/rarm-retrobrew
-rarm-retrobrew
-
-
-#################################################################
 # STORE ROBOT USER DATA
 #################################################################
 rsync -a /home/robot/ /opt/retro-arm/robot/
@@ -129,6 +120,14 @@ chmod +x /opt/retro-arm/rarm-boot-once.sh
 chown robot:robot /opt/retro-arm/rarm-boot-once.sh
 cp -f /opt/retro-arm/rarm-boot-once.service /etc/systemd/system/rarm-boot-once.service
 ln -sf /etc/systemd/system/rarm-boot-once.service /etc/systemd/system/multi-user.target.wants/rarm-boot-once.service
+
+
+#################################################################
+# RARM-RETROBREW COMMAND
+#################################################################
+chmod +x /opt/retro-arm/rarm-retrobrew.sh
+chown robot:robot /opt/retro-arm/rarm-retrobrew.sh
+ln -sf /opt/retro-arm/rarm-retrobrew.sh /usr/local/bin/rarm-retrobrew
 
 
 #################################################################
