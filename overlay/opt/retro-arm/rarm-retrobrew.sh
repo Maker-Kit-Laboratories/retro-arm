@@ -23,7 +23,8 @@ create_empty_folders() {
         echo -e "${GREEN}Empty folder created for ${system}${NC}"
     done
 }
-clear
+clear -x
+echo
 echo -e "${GREEN}RETROBREW ROM INSTALLER:${NC}"
 echo -e "${GREEN}=========================${NC}"
 read -p "Select [y/N]: " install_roms
