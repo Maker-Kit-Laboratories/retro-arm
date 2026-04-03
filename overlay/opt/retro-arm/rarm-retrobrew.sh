@@ -27,6 +27,7 @@ clear -x
 echo
 echo -e "${GREEN}RETROBREW ROM INSTALLER:${NC}"
 echo -e "${GREEN}=========================${NC}"
+echo -e "${RED}[y/N]${NC}"
 read -p "Select [y/N]: " install_roms
 if [[ "$install_roms" =~ ^[Yy]$ ]]; then
     for i in "${!system_list[@]}"; do
